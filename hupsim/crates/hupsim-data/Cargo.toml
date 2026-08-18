@@ -1,0 +1,34 @@
+[package]
+name = "hupsim-data"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[features]
+# One-shot import tooling (kml_import). Never enabled by the app — the
+# runtime dependency graph must not gain quick-xml.
+tools = ["dep:quick-xml"]
+# Forwards hupsim-core's rayon-parallel matrix transforms so the EP-9
+# benchmark (tests/matrix_bench.rs) can compare scalar vs parallel.
+parallel = ["hupsim-core/parallel"]
+
+[dependencies]
+hupsim-core = { workspace = true }
+# EP-21: seed backdating draws from the EP-10 LOS tables (params/sampling).
+hupsim-sim = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+rand = { workspace = true }
+rand_chacha = { workspace = true }
+# 0.41 aligns with the existing Cargo.lock pin (Bevy's Linux windowing stack).
+quick-xml = { version = "0.41", optional = true }
+
+[[bin]]
+name = "kml_import"
+required-features = ["tools"]
+
+[[bin]]
+name = "podium_gen"
+required-features = ["tools"]

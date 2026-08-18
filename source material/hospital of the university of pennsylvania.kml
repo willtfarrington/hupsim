@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document id="document">
+	<name>hospital of the university of pennsylvania</name>
+	<gx:CascadingStyle kml:id="__managed_style_08D62DF7C24127AF38A1_highlight">
+		<styleUrl>https://earth.google.com/balloon_components/base/1.1.0.0/card_template.kml#main</styleUrl>
+		<Style>
+			<IconStyle>
+				<scale>1.2</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>4</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<gx:CascadingStyle kml:id="__managed_style_08D62DF7C24127AF38A1_normal">
+		<styleUrl>https://earth.google.com/balloon_components/base/1.1.0.0/card_template.kml#main</styleUrl>
+		<Style>
+			<IconStyle>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>2.66667</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_08D62DF7C24127AF38A1">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_08D62DF7C24127AF38A1_normal</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_08D62DF7C24127AF38A1_highlight</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Placemark id="0B9C96D1294127AF3897">
+		<name>Silverstein Pavilion</name>
+		<LookAt>
+			<longitude>-75.19365302706096</longitude>
+			<latitude>39.94968466510711</latitude>
+			<altitude>0</altitude>
+			<heading>13.23032422987057</heading>
+			<tilt>3.52608254204068</tilt>
+			<gx:fovy>29.99999999999999</gx:fovy>
+			<range>287.6849212873878</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_08D62DF7C24127AF38A1</styleUrl>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						-75.19389423620393,39.94942472899208,0 -75.19302836695147,39.94931200012454,0 -75.19297208033007,39.94957098389283,0 -75.19343767383262,39.94962713575807,0 -75.19342947199048,39.94967398680358,0 -75.19356377773552,39.94969005786739,0 -75.19359196628372,39.9495461692611,0 -75.19367512637686,39.94955595597882,0 -75.19368045978715,39.94952869988941,0 -75.19386933377143,39.94955138023418,0 -75.19389423620393,39.94942472899208,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark id="039A6FF9CB4127B642EF">
+		<name>Ravdin Building</name>
+		<LookAt>
+			<longitude>-75.19293194912777</longitude>
+			<latitude>39.94973699643494</latitude>
+			<altitude>20.05487560221316</altitude>
+			<heading>-72.01206886956932</heading>
+			<tilt>51.70572647677793</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>50.73157325121982</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_08D62DF7C24127AF38A1</styleUrl>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						-75.19284150096584,39.95015798631102,0 -75.19312828237959,39.95019585603824,0 -75.19325922063418,39.94960546397245,0 -75.19297193081704,39.94957088747191,0 -75.19284150096584,39.95015798631102,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark id="001CDD401C4127CCFDD9">
+		<name>Rhoads Pavilion</name>
+		<LookAt>
+			<longitude>-75.19552481928248</longitude>
+			<latitude>39.94980430305611</latitude>
+			<altitude>-1.414648398423424e-09</altitude>
+			<heading>177.7718389426945</heading>
+			<tilt>12.14746719253355</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>46.90901182450922</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_08D62DF7C24127AF38A1</styleUrl>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						-75.19541104641227,39.949813862873,0 -75.19496887562764,39.94976117627432,0 -75.19497167560989,39.94974759861196,0 -75.19489947487955,39.94973851460937,0 -75.194880707802,39.94983205107413,0 -75.19490199135062,39.94983453679012,0 -75.1948921639644,39.94988420938513,0 -75.19490979791649,39.94988587873193,0 -75.19486405909109,39.95011718416641,0 -75.19533796543598,39.95017321696536,0 -75.19541104641227,39.949813862873,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark id="0C4A1C67FB4127D86250">
+		<name>White Memorial Building</name>
+		<LookAt>
+			<longitude>-75.19309797237455</longitude>
+			<latitude>39.95033825642562</latitude>
+			<altitude>-7.073241992117119e-10</altitude>
+			<heading>44.52332008171471</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>78.75439634854655</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_08D62DF7C24127AF38A1</styleUrl>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						-75.1931284843737,39.95019600633331,0 -75.19279284301891,39.95015169728548,0 -75.19274103604189,39.95038349703454,0 -75.19307624940089,39.95042563624561,0 -75.1931284843737,39.95019600633331,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark id="0D2B53EE8D4127E1AF0B">
+		<name>Dulles Building</name>
+		<LookAt>
+			<longitude>-75.19320579441043</longitude>
+			<latitude>39.95012062788332</latitude>
+			<altitude>-7.073241992117119e-10</altitude>
+			<heading>44.52570721630514</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>68.59313590608051</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_08D62DF7C24127AF38A1</styleUrl>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						-75.19325769646683,39.95024010772296,0 -75.19312203506212,39.95022520610811,0 -75.19307636306448,39.95042550675533,0 -75.19366545212215,39.95050205445369,0 -75.19382135882032,39.94980940345461,0 -75.19375499339468,39.94980028034777,0 -75.19376100842197,39.94977278446981,0 -75.19366653610717,39.94976092486377,0 -75.19360285566026,39.9500473552265,0 -75.19330610682549,39.95000466061796,0 -75.19325769646683,39.95024010772296,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark id="0D6E6CF5804127FBB659">
+		<name>Gates Building</name>
+		<LookAt>
+			<longitude>-75.19375818563195</longitude>
+			<latitude>39.95049898148178</latitude>
+			<altitude>0</altitude>
+			<heading>44.52795298262026</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>81.06666128370881</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_08D62DF7C24127AF38A1</styleUrl>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						-75.19485108615666,39.95065482852991,0 -75.19487489610835,39.95054791757573,0 -75.19479721173838,39.95053724870338,0 -75.19479160045194,39.95056332982707,0 -75.19375657979167,39.95042878469481,0 -75.19376272064228,39.95040067254953,0 -75.19369181447053,39.95039026594758,0 -75.19366545873091,39.9505021621593,0 -75.19485108615666,39.95065482852991,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark id="01CF777A654128079957">
+		<name>Founders Pavilion</name>
+		<LookAt>
+			<longitude>-75.19434931323597</longitude>
+			<latitude>39.95050905980223</latitude>
+			<altitude>-7.073241992117119e-10</altitude>
+			<heading>44.52849783303713</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>77.93344901972073</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_08D62DF7C24127AF38A1</styleUrl>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						-75.19456565764602,39.94979718120931,0 -75.19433140538133,39.94976630890791,0 -75.19434294017465,39.9497054154243,0 -75.19411665629976,39.9496770256462,0 -75.19410432287761,39.94973750348852,0 -75.19407403719364,39.9497332989645,0 -75.19392823821002,39.95045116489488,0 -75.19441146916878,39.95051399113659,0 -75.19456565764602,39.94979718120931,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark id="0EB8D1588341280BECF0">
+		<name>Maloney Building1</name>
+		<LookAt>
+			<longitude>-75.19505325063575</longitude>
+			<latitude>39.95048304121045</latitude>
+			<altitude>-1.414648398423424e-09</altitude>
+			<heading>44.52816699842457</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>115.4965864802654</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_08D62DF7C24127AF38A1</styleUrl>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						-75.19485100582963,39.95065495436204,0 -75.19523011222034,39.95070391542463,0 -75.19533800013447,39.95017332273377,0 -75.19512693826429,39.95014822555538,0 -75.19511709735838,39.95019178920242,0 -75.19513271591674,39.95019325692862,0 -75.19512583484472,39.95022704786363,0 -75.1951426660297,39.95022900630244,0 -75.19511085306705,39.95037759093205,0 -75.19491802539713,39.95035290851447,0 -75.19485100582963,39.95065495436204,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark id="04B1CB425041281145B9">
+		<name>Clifton Center (previously labeled as &quot;Pavilion&quot;)</name>
+		<LookAt>
+			<longitude>-75.19230376071981</longitude>
+			<latitude>39.94885771572937</latitude>
+			<altitude>96.64943163857495</altitude>
+			<heading>44.5302060095818</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>277.7251207764493</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_08D62DF7C24127AF38A1</styleUrl>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						-75.19242435229344,39.94911688819633,0 -75.19252020525153,39.94913399829146,0 -75.19260715384488,39.94911112199005,0 -75.19266709431001,39.94905006551753,0 -75.19266704020976,39.94897583303632,0 -75.1926379186465,39.94892050065988,0 -75.19162573703984,39.94820017947005,0 -75.19111606648758,39.94798109614543,0 -75.19103315335529,39.94795434750814,0 -75.19095023037301,39.94796158444972,0 -75.19088872312433,39.94799098301814,0 -75.19084325738172,39.94803833103482,0 -75.19084652751772,39.94809754552213,0 -75.1908871702786,39.94814874818081,0 -75.19189017391572,39.94887397044175,0 -75.19242435229344,39.94911688819633,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark id="0269E5E6D3412812B551">
+		<name>skybridge between Silverstein and Clifton</name>
+		<LookAt>
+			<longitude>-75.19294902396339</longitude>
+			<latitude>39.94919475834963</latitude>
+			<altitude>11.99945803702474</altitude>
+			<heading>44.52984767909319</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>103.7099409204507</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_08D62DF7C24127AF38A1</styleUrl>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						-75.19316122509878,39.94932759009829,0 -75.19266692284958,39.94898596666508,0 -75.19266732401577,39.94902346062447,0 -75.1931041382976,39.94932326971624,0 -75.19316122509878,39.94932759009829,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark id="06C1B64EC4412816422C">
+		<name>Perelman Center for Advanced Medicine</name>
+		<LookAt>
+			<longitude>-75.19242537058989</longitude>
+			<latitude>39.94846883846251</latitude>
+			<altitude>0</altitude>
+			<heading>331.1779591341828</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>300.1892555592191</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_08D62DF7C24127AF38A1</styleUrl>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						-75.1924880287942,39.94841345634788,0 -75.1925637529345,39.94817991124216,0 -75.19250944020567,39.94810959241757,0 -75.19258411793032,39.94807809023887,0 -75.19266644749815,39.94818565881329,0 -75.19295608268339,39.9480568848091,0 -75.19287537487611,39.94795157627576,0 -75.19304462548979,39.94787527151047,0 -75.19318466867929,39.94790451797555,0 -75.19369757567165,39.94766851883635,0 -75.19292269814424,39.94666564277773,0 -75.19262735932575,39.94680069419981,0 -75.1927093974483,39.94690538296566,0 -75.19266461660563,39.94692564060827,0 -75.19263241200987,39.94688846016216,0 -75.19256850664416,39.94691859143119,0 -75.19266469953867,39.94704300137822,0 -75.19200758189204,39.94734029605699,0 -75.19204640842158,39.9473905473425,0 -75.19177939786057,39.94751058516462,0 -75.19180725988066,39.94754748224749,0 -75.19166302327973,39.94761309359014,0 -75.19227620903256,39.94839881825892,0 -75.1923226963431,39.94837709311648,0 -75.19238133508841,39.94845494606891,0 -75.1924880287942,39.94841345634788,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark id="03FAF5046B412817A040">
+		<name>skybridge #2 between Clifton and Perelman</name>
+		<LookAt>
+			<longitude>-75.19174555836773</longitude>
+			<latitude>39.94818161526381</latitude>
+			<altitude>-1.414648398423424e-09</altitude>
+			<heading>331.1782627603884</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>117.841607129556</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_08D62DF7C24127AF38A1</styleUrl>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						-75.19194233476448,39.94797128483584,0 -75.19162544406646,39.94820050103478,0 -75.19164934654437,39.94821699991468,0 -75.19195835133176,39.94799338196842,0 -75.19194233476448,39.94797128483584,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark id="00ABEF3C9541281B5E04">
+		<name>skybridge #1 between Clifton and Perelman</name>
+		<LookAt>
+			<longitude>-75.19233074729325</longitude>
+			<latitude>39.94830255127164</latitude>
+			<altitude>-7.073241992117119e-10</altitude>
+			<heading>331.1773411613447</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>136.6125212118598</range>
+			<altitudeMode>absolute</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_08D62DF7C24127AF38A1</styleUrl>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						-75.19217493223046,39.94826823041229,0 -75.19215784794822,39.94824633440012,0 -75.1919613859004,39.94843895802303,0 -75.19198521963486,39.94845631211534,0 -75.19217493223046,39.94826823041229,0 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+</Document>
+</kml>

@@ -1,0 +1,20 @@
+{
+  "$schema_note": "Maps Google Earth Pro placemark names (XML-entity-decoded) in '../source material/hospital of the university of pennsylvania.kml' to layout node ids. Consumed only by the kml_import tool (cargo run -p hupsim-data --bin kml_import --features tools) — never at runtime. replace_footprint:false = the verified OSM polygon stays the rendered footprint; the hand-trace is a cross-check input and bridge anchor only. Unmapped placemark names are a hard error (typo tripwire).",
+  "buildings": {
+    "Silverstein Pavilion":        {"node": "wing.silverstein"},
+    "Ravdin Building":             {"node": "wing.ravdin"},
+    "Rhoads Pavilion":             {"node": "wing.rhoads"},
+    "White Memorial Building":     {"node": "wing.white"},
+    "Dulles Building":             {"node": "wing.dulles"},
+    "Gates Building":              {"node": "wing.gates"},
+    "Founders Pavilion":           {"node": "wing.founders"},
+    "Maloney Building1":           {"node": "wing.maloney"},
+    "Clifton Center (previously labeled as \"Pavilion\")": {"node": "bldg.pavilion", "replace_footprint": false},
+    "Perelman Center for Advanced Medicine":               {"node": "bldg.pcam",     "replace_footprint": false}
+  },
+  "bridges": {
+    "skybridge between Silverstein and Clifton": {"id": "bridge.silverstein_clifton", "from": "wing.silverstein", "to": "bldg.pavilion", "level": 3, "deck_height_m": 12.0},
+    "skybridge #1 between Clifton and Perelman": {"id": "bridge.clifton_pcam_1", "from": "bldg.pavilion", "to": "bldg.pcam", "level": 2, "deck_height_m": 8.0},
+    "skybridge #2 between Clifton and Perelman": {"id": "bridge.clifton_pcam_2", "from": "bldg.pavilion", "to": "bldg.pcam", "level": 2, "deck_height_m": 8.0}
+  }
+}

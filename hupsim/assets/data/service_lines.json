@@ -1,0 +1,330 @@
+{
+  "$schema_note": "Service-line taxonomy + unit-to-line mapping (EP-8). DRAFTED BY CLAUDE FOR OWNER REVIEW — every assignment below derives from the unit's `service` string in units.json; `source` quotes that string, `confidence` rates the DERIVATION step (verified = the service string names the line outright; inferred = judgment applied, see note; unverified = no service identity exists to derive from), while the unit's own identity keeps its provenance in units.json. Units whose service is literally 'Unassigned (no public source)' map to line.other with needs_owner_ruling: true — the compiler surfaces these as a warning list, they are NOT silently binned. The mapping must stay total: a compiled unit with no assignment here is a hard compile error. Binning conventions applied (all reversible by editing this file): general multi-service ICUs (MICU, SICU) sit in Critical Care; service-aligned ICUs (HVICU, Neuro ICU, Transplant ICU) stay on their organ/service line — unit_type already carries the level of care, so lines slice by clinical service; vascular and cardiac surgery sit in Cardiac (Penn's Heart & Vascular umbrella); transplant sits in Surgery (no separate Transplant line in the starting set); neonatal intensive care sits in Women's Health & Neonatal, not Critical Care. EP-23 (2026-08-13): the owner ruled all 11 formerly-flagged units after a targeted OSINT session — end-states + evidence in each entry's note and in units.json; six units were retired to assets/data/archive/ep23_roster_rulings.json and their assignments removed here (same-commit, per the stale-assignment rule); gyn/gyn-onc joined Women's Health & Neonatal; the Oncology MICU follows the service-aligned-ICU convention into Oncology; MICU (Founders 8) and SICU (Rhoads 5) keep Critical Care populated.",
+  "lines": [
+    {
+      "id": "line.medicine",
+      "name": "Medicine",
+      "description": "General/internal medicine, advanced medicine (telemetry), pulmonary, GI, infectious diseases, HUPlan"
+    },
+    {
+      "id": "line.cardiac",
+      "name": "Cardiac",
+      "description": "Heart & vascular umbrella: cardiology, cardiac surgery, vascular surgery, HVICU, CV progressive care"
+    },
+    {
+      "id": "line.critical_care",
+      "name": "Critical Care",
+      "description": "General multi-service ICUs (MICU, SICU). Service-aligned ICUs (HVICU, Neuro ICU, Transplant ICU) stay on their own lines; unit_type = icu carries the level of care"
+    },
+    {
+      "id": "line.surgery",
+      "name": "Surgery",
+      "description": "Surgical specialties without their own line: general, GI/bariatric, ENT/plastics, urology/colorectal, transplant"
+    },
+    {
+      "id": "line.oncology",
+      "name": "Oncology",
+      "description": "Medical oncology, hematologic oncology, stem cell transplant, cellular therapy"
+    },
+    {
+      "id": "line.neuro",
+      "name": "Neuro",
+      "description": "Neuroscience umbrella: neurology, neurosurgery, neurocritical care, epilepsy monitoring"
+    },
+    {
+      "id": "line.womens_neonatal",
+      "name": "Women's Health & Neonatal",
+      "description": "Obstetrics (antepartum/postpartum/mother-baby), labor & delivery, gynecology & gynecologic oncology, neonatology (incl. the Level III ICN). Description widened in EP-23 (2026-08-13) when the Silverstein 7/8 + Ravdin 6 women's-health block was ruled."
+    },
+    {
+      "id": "line.emergency",
+      "name": "Emergency",
+      "description": "Emergency medicine, incl. boarding-capable ED treatment spaces"
+    },
+    {
+      "id": "line.behavioral_health",
+      "name": "Behavioral Health",
+      "description": "Psychiatry / detox. No unit in the current single-campus roster maps here (HUP behavioral-health beds are outside the modeled scope); kept for taxonomy completeness"
+    },
+    {
+      "id": "line.other",
+      "name": "Other / Unassigned",
+      "description": "Research beds (CHPS only since EP-23, 2026-08-13 — every formerly-unsourced unit is now ruled or retired; the needs_owner_ruling flag mechanism remains for future roster additions)"
+    }
+  ],
+  "assignments": [
+    {
+      "unit": "unit.ravdin.6",
+      "line": "line.womens_neonatal",
+      "confidence": "verified",
+      "source": "service: 'Gynecology / Gynecologic Oncology (+ surgical & medicine overflow)'",
+      "note": "EP-23 re-bin (owner-approved 2026-08-13): DAISY Sept 2024 places the Gyn/Gyn-Onc population here after the Feb 2023 split; gyn-onc binned under Women's Health (Penn's OB/GYN service family), not Oncology, per owner ruling. Supersedes the pre-split 'Advanced Medicine' → line.medicine assignment."
+    },
+    {
+      "unit": "unit.ravdin.6ne.chps",
+      "line": "line.other",
+      "confidence": "verified",
+      "source": "service: 'Clinical Research — Human Phenomic Science'",
+      "note": "Deliberate: research beds belong to no clinical service line. Not flagged for ruling — the identity is known, the binning is by design."
+    },
+    {
+      "unit": "unit.dulles.6",
+      "line": "line.medicine",
+      "confidence": "inferred",
+      "source": "service: 'Medical Oncology / General Medicine'",
+      "note": "JUDGMENT: the service string names Medical Oncology first, but units.json flags it STALE (pre-2021; inpatient onc moved to Pavilion 12/14). Binned to Medicine as the likely backfill so the Oncology rollup doesn't double-count a moved service. Owner may re-bin to line.oncology."
+    },
+    {
+      "unit": "unit.silverstein.7",
+      "line": "line.womens_neonatal",
+      "confidence": "verified",
+      "source": "service: 'Women's Health — Antepartum / Postpartum'",
+      "note": "EP-23 ruling (a) verified, 2026-08-13: DAISY Sept 2024 unit label 'Women's Health (Silverstein 7)'. Flag dropped — ruled."
+    },
+    {
+      "unit": "unit.silverstein.8",
+      "line": "line.womens_neonatal",
+      "confidence": "inferred",
+      "source": "service: 'Unassigned (inferred Postpartum / Mother-Baby; no current floor-naming source)'",
+      "note": "EP-23 ruling (c) inferred, owner-approved 2026-08-13: Women's Health block continuity (Silverstein 7 antepartum/postpartum + ICN on the Silverstein core; 2018 DAISY postpartum tie; OB never moved to the Pavilion). Identity stays unsourced in units.json; flag dropped — ruled."
+    },
+    {
+      "unit": "unit.founders.8",
+      "line": "line.critical_care",
+      "confidence": "verified",
+      "source": "service: 'Medical Critical Care (MICU)'",
+      "note": "EP-23 (owner ruling 2026-08-13): the MICU moved here from Founders 9 (retired to archive). General medical ICU — binned with the SICU in Critical Care per the general-vs-service-aligned ICU convention. Supersedes the 'likely medicine' inference."
+    },
+    {
+      "unit": "unit.silverstein.9",
+      "line": "line.medicine",
+      "confidence": "verified",
+      "source": "service: 'Inpatient Pulmonology / Pulmonary-GI Medicine'"
+    },
+    {
+      "unit": "unit.ravdin.9",
+      "line": "line.medicine",
+      "confidence": "verified",
+      "source": "service: 'Pulmonary / GI / General Medicine'"
+    },
+    {
+      "unit": "unit.silverstein.10",
+      "line": "line.medicine",
+      "confidence": "inferred",
+      "source": "service: 'Unassigned (former Cardiac Surgery)'",
+      "note": "JUDGMENT: cardiac surgery moved to Pavilion 9 in 2021; HUP Main floors vacated by the move were backfilled with medicine, not left empty (cf. Silverstein 11/12 notes). Binned to Medicine as the likely current occupant. NOT flagged for ruling (the service string differs from the literal 'no public source' form), but flagging is a one-line edit if the owner prefers."
+    },
+    {
+      "unit": "unit.founders.10",
+      "line": "line.medicine",
+      "confidence": "verified",
+      "source": "service: 'Advanced Medicine (general medicine w/ telemetry)'"
+    },
+    {
+      "unit": "unit.silverstein.11",
+      "line": "line.medicine",
+      "confidence": "verified",
+      "source": "service: 'General Medicine / Pulmonary / Infectious Diseases'"
+    },
+    {
+      "unit": "unit.founders.11",
+      "line": "line.medicine",
+      "confidence": "verified",
+      "source": "service: 'Advanced Medicine (medical/telemetry)'"
+    },
+    {
+      "unit": "unit.silverstein.12",
+      "line": "line.medicine",
+      "confidence": "verified",
+      "source": "service: 'General Medicine (HUPlan)'"
+    },
+    {
+      "unit": "unit.founders.12",
+      "line": "line.medicine",
+      "confidence": "verified",
+      "source": "service: 'General Medicine'"
+    },
+    {
+      "unit": "unit.founders.14",
+      "line": "line.medicine",
+      "confidence": "verified",
+      "source": "service: 'General Medicine / Medical-Surgical (monitored)'"
+    },
+    {
+      "unit": "unit.rhoads.3",
+      "line": "line.surgery",
+      "confidence": "verified",
+      "source": "service: 'ENT / Plastic Surgery'"
+    },
+    {
+      "unit": "unit.rhoads.4",
+      "line": "line.surgery",
+      "confidence": "verified",
+      "source": "service: 'GI / Bariatric Surgery'"
+    },
+    {
+      "unit": "unit.rhoads.5",
+      "line": "line.critical_care",
+      "confidence": "verified",
+      "source": "service: 'Surgical Critical Care (SICU)'",
+      "note": "EP-23 ruling (a) verified, 2026-08-13: the 24-bed Rhoads 5 SICU (Gold Beacon). General surgical ICU spanning surgical services — binned with the MICU in Critical Care rather than Surgery, per the general-vs-service-aligned ICU convention. Supersedes the retired Founders 5 entry."
+    },
+    {
+      "unit": "unit.rhoads.6",
+      "line": "line.surgery",
+      "confidence": "verified",
+      "source": "service: 'General Surgery'"
+    },
+    {
+      "unit": "unit.rhoads.7",
+      "line": "line.surgery",
+      "confidence": "verified",
+      "source": "service: 'Urology / Colorectal / General Surgery'"
+    },
+    {
+      "unit": "unit.ravdin.ld",
+      "line": "line.womens_neonatal",
+      "confidence": "verified",
+      "source": "service: 'Obstetrics — Labor & Delivery'"
+    },
+    {
+      "unit": "unit.silverstein.icn",
+      "line": "line.womens_neonatal",
+      "confidence": "verified",
+      "source": "service: 'Neonatology — Level III ICN'",
+      "note": "Neonatal intensive care binned with its service line (Women's Health & Neonatal), not Critical Care — the Critical Care line is adult general ICUs."
+    },
+    {
+      "unit": "unit.pavilion.7.city",
+      "line": "line.cardiac",
+      "confidence": "inferred",
+      "source": "service: 'Vascular Surgery (progressive care)'",
+      "note": "JUDGMENT: vascular surgery binned under the Cardiac (heart & vascular) umbrella, matching Penn's own service-line grouping and this unit's pairing with the CV surgical PCUs on 9. Owner may prefer line.surgery."
+    },
+    {
+      "unit": "unit.pavilion.7.center",
+      "line": "line.cardiac",
+      "confidence": "inferred",
+      "source": "service: 'Heart & Vascular ICU (floor reported; wing inferred)'",
+      "note": "EP-23 (owner-approved 2026-08-13): service-aligned ICU stays on its organ line (heart & vascular umbrella), matching the 9 City HVICU precedent. Wing placement is itself inferred — see units.json."
+    },
+    {
+      "unit": "unit.pavilion.7.campus",
+      "line": "line.cardiac",
+      "confidence": "inferred",
+      "source": "service: 'Unassigned (inferred Heart & Vascular / Thoracic — ward level)'",
+      "note": "EP-23 ruling (c) inferred, owner-approved 2026-08-13: ward level of the floor-7 heart-&-vascular/thoracic block (7 City vascular PCU verified; 7 Center HVICU). Flag dropped — ruled."
+    },
+    {
+      "unit": "unit.pavilion.8.city",
+      "line": "line.cardiac",
+      "confidence": "verified",
+      "source": "service: 'Cardiac Medicine / Surgery'"
+    },
+    {
+      "unit": "unit.pavilion.8.center",
+      "line": "line.cardiac",
+      "confidence": "verified",
+      "source": "service: 'Cardiac Medicine / Surgery'"
+    },
+    {
+      "unit": "unit.pavilion.9.campus",
+      "line": "line.cardiac",
+      "confidence": "verified",
+      "source": "service: 'Cardiac Surgery (progressive care)'",
+      "note": "Cardiac surgery sits in Cardiac (heart & vascular umbrella), not Surgery."
+    },
+    {
+      "unit": "unit.pavilion.9.center",
+      "line": "line.cardiac",
+      "confidence": "verified",
+      "source": "service: 'Cardiac Surgery (progressive care)'",
+      "note": "Cardiac surgery sits in Cardiac (heart & vascular umbrella), not Surgery."
+    },
+    {
+      "unit": "unit.pavilion.9.city",
+      "line": "line.cardiac",
+      "confidence": "inferred",
+      "source": "service: 'Heart & Vascular ICU (post-op cardiac/vascular; ECMO, IABP, VAD, CRRT)'",
+      "note": "JUDGMENT: service-aligned ICU stays on its organ line (unit_type = icu already carries the level of care); only the general MICU/SICU bin to Critical Care."
+    },
+    {
+      "unit": "unit.pavilion.10.campus",
+      "line": "line.neuro",
+      "confidence": "verified",
+      "source": "service: 'Neurosurgery'",
+      "note": "Neurosurgery sits in the Neuro (neuroscience) line, not Surgery, matching the floor-10 neuro block."
+    },
+    {
+      "unit": "unit.pavilion.10.center",
+      "line": "line.neuro",
+      "confidence": "verified",
+      "source": "service: 'Medical / Surgical Neurology'"
+    },
+    {
+      "unit": "unit.pavilion.10.city",
+      "line": "line.neuro",
+      "confidence": "inferred",
+      "source": "service: 'Neurocritical Care'",
+      "note": "JUDGMENT: service-aligned ICU stays on its organ line (unit_type = icu already carries the level of care); only the general MICU/SICU bin to Critical Care."
+    },
+    {
+      "unit": "unit.pavilion.11.city",
+      "line": "line.surgery",
+      "confidence": "verified",
+      "source": "service: 'Abdominal / Solid-Organ Transplant Surgery'",
+      "note": "Transplant kept under Surgery — the starting taxonomy has no separate Transplant line. Owner may split one out later; this file is the only edit needed."
+    },
+    {
+      "unit": "unit.pavilion.11.center",
+      "line": "line.surgery",
+      "confidence": "inferred",
+      "source": "service: 'Transplant Critical Care'",
+      "note": "JUDGMENT: service-aligned ICU stays on its service's line (Surgery, with transplant); only the general MICU/SICU bin to Critical Care."
+    },
+    {
+      "unit": "unit.pavilion.11.campus",
+      "line": "line.oncology",
+      "confidence": "verified",
+      "source": "service: 'Oncology — stem cell transplant / cellular therapy'"
+    },
+    {
+      "unit": "unit.pavilion.12.campus",
+      "line": "line.oncology",
+      "confidence": "verified",
+      "source": "service: 'Medical Oncology (chemo/biotherapy, auto SCT, trials)'"
+    },
+    {
+      "unit": "unit.pavilion.12.center",
+      "line": "line.oncology",
+      "confidence": "inferred",
+      "source": "service: 'Oncology MICU (medical critical care service)'",
+      "note": "EP-23 (owner-approved 2026-08-13): service-aligned ICU stays on its service line (Oncology), per the HVICU/Neuro-ICU/Transplant-ICU convention — run by the medical critical care service, but its patients and pressure belong to the oncology block. Existence reported, 12-bed size + wing placement inferred; see units.json."
+    },
+    {
+      "unit": "unit.pavilion.12.city",
+      "line": "line.oncology",
+      "confidence": "verified",
+      "source": "service: 'Medical / Solid Oncology'",
+      "note": "EP-23 ruling (a) verified, 2026-08-13: 2022 careers requisition '12 City Oncology at the New Patient Pavilion'. Flag dropped — ruled."
+    },
+    {
+      "unit": "unit.pavilion.14.campus",
+      "line": "line.oncology",
+      "confidence": "verified",
+      "source": "service: 'Hematologic Oncology (allo/auto SCT, cellular therapy)'"
+    },
+    {
+      "unit": "unit.pavilion.14.center",
+      "line": "line.oncology",
+      "confidence": "verified",
+      "source": "service: 'Hematologic Oncology'"
+    },
+    {
+      "unit": "unit.pavilion.ed",
+      "line": "line.emergency",
+      "confidence": "verified",
+      "source": "service: 'Emergency Medicine'"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+[package]
+name = "hupsim-app"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+default-run = "hupsim"
+
+[[bin]]
+name = "hupsim"
+path = "src/main.rs"
+
+[dependencies]
+hupsim-core = { workspace = true }
+hupsim-data = { workspace = true }
+hupsim-sim = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+rand = { workspace = true }
+rand_chacha = { workspace = true }
+
+bevy = "0.19.0"
+bevy_egui = "0.41.1"
+rfd = "0.17.2"

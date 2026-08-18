@@ -1,0 +1,1233 @@
+{
+  "$schema_note": "Curated inpatient unit roster. Compiled 2026-08-10 from the HUP wayfinding directory, nursing.upenn.edu Guide to Units (stale, pre-2021), Penn Nursing NURS 2450 clinical placements (Coursicle), careers.pennmedicine.org job postings (highest-yield source for current unit identity + bed counts), med.upenn.edu program pages, and pennmedicine.org. Unit-to-service assignments churn; every entry carries confidence + era + source. Room generation: 'ranges' = HUP Main wayfinding room numbers; 'pavilion_wing' = floor x wing under the published 1-72 City/Center/Campus numbering; 'count' = bed-count-only units. Pavilion floor 13 is deliberately NOT modeled: 504 licensed rooms = exactly 7 floors x 72 slots (7,8,9,10,11,12,14) and no source names any floor-13 unit. EP-8 adds per-unit 'capabilities' (telemetry: all|none across the unit's rooms; negative_pressure_first_n: that many airborne-isolation rooms, seeded deterministically onto the FIRST rooms in generation order - no RNG) and 'staffing' (target_rn_ratio = patients per RN). Both are inferred defaults from professional staffing/design norms, NOT sourced to HUP - each carries confidence + note; correct per-unit as verified. Service-line membership lives in service_lines.json (total mapping, compiler-enforced). EP-23 (2026-08-13): owner ruled all 11 formerly-unsourced units after a targeted OSINT session (per-unit sources/notes below; framework in roadmap/EP-23-service-line-rulings.md). Six units retired to assets/data/archive/ep23_roster_rulings.json (42-unit roster): Founders 5 + Founders 9 (SICU ruled Rhoads 5, MICU ruled Founders 8), Rhoads 2 + Rhoads 10 (no corroborated service; Rhoads 10 = directory artifact), Pavilion 8 Campus + 14 City (no evidence of distinct inpatient units). 'pavilion_wing' specs may carry 'slots' (range syntax) to model partial/spanning wings - floor 12 splits Center between the 12-bed Oncology MICU (13-24) and the 36-bed 12 Campus (25-60).",
+  "units": [
+    {
+      "id": "unit.ravdin.6",
+      "name": "Ravdin 6 — Gyn / Gyn-Oncology",
+      "service": "Gynecology / Gynecologic Oncology (+ surgical & medicine overflow)",
+      "unit_type": "med_surg",
+      "building": "wing.ravdin",
+      "level": 6,
+      "elevator_core": "Ravdin",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "630-648",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "daisyfoundation.org honoree 'Jamillah Washington' (Sept 2024, fetched 2026-08-12): Silverstein 7's population split in Feb 2023; Ravdin 6 took 'the Gyn/Gyn-Oncology population, as well as overflow surgical and medicine'",
+      "note": "EP-23 re-bin (owner-approved 2026-08-13): supersedes the 'Advanced Medicine' identity — that careers requisition likely pre-dates the Feb 2023 split. Overflow surgical/medicine role retained in the service string. Pre-2021: Thoracic & Cardiac Surgery (since moved to the Pavilion).",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 1,
+        "confidence": "inferred",
+        "note": "Telemetry wiring retained from the floor's Advanced Medicine ('w/ telemetry') era - physical capability outlives the service change. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 4,
+        "confidence": "inferred",
+        "note": "Gyn-onc surgical/oncologic acuity - 4:1 (EP-23, follows identity ruling)."
+      }
+    },
+    {
+      "id": "unit.ravdin.6ne.chps",
+      "name": "CHPS Inpatient Research (Ravdin 6 NE)",
+      "service": "Clinical Research — Human Phenomic Science",
+      "unit_type": "research",
+      "building": "wing.ravdin",
+      "level": 6,
+      "elevator_core": "Ravdin",
+      "rooms": {
+        "source": "count",
+        "count": 5,
+        "number_prefix": "CHPS-",
+        "kind": "research"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "med.upenn.edu/chps/locations.html — 'HUP Ravdin 6 NE: 5 inpatient/research observation beds'",
+      "note": "CORRECTION to hup_topology.json: CHPS inpatient beds are here, NOT at PCAM. PCAM 4 South holds 12 OUTPATIENT bays only.",
+      "capabilities": {
+        "telemetry": "none",
+        "negative_pressure_first_n": 0,
+        "confidence": "inferred",
+        "note": "Research observation beds - monitoring capability unknown."
+      },
+      "staffing": {
+        "target_rn_ratio": 5,
+        "confidence": "inferred",
+        "note": "Low-acuity research observation."
+      }
+    },
+    {
+      "id": "unit.dulles.6",
+      "name": "Dulles 6",
+      "service": "Medical Oncology / General Medicine",
+      "unit_type": "med_surg",
+      "building": "wing.dulles",
+      "level": 6,
+      "elevator_core": "Dulles",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "650-671",
+        "kind": "inpatient"
+      },
+      "confidence": "reported",
+      "era": "pre_2021",
+      "source": "nursing.upenn.edu Guide to Units 'Dulles 6 Medical Oncology' (inpatient onc largely moved to Pavilion 12/14; current service uncertain)",
+      "note": "Service assignment STALE — only patient-room floor in Dulles.",
+      "capabilities": {
+        "telemetry": "none",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "No telemetry mention in the unit's service identity - conservatively not telemetry-capable; correct per-unit as verified. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 5,
+        "confidence": "inferred",
+        "note": "Med-surg 5:1."
+      }
+    },
+    {
+      "id": "unit.silverstein.7",
+      "name": "Silverstein 7 — Women's Health (Antepartum/Postpartum)",
+      "service": "Women's Health — Antepartum / Postpartum",
+      "unit_type": "med_surg",
+      "building": "wing.silverstein",
+      "level": 7,
+      "elevator_core": "Silverstein",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "701-722",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "daisyfoundation.org honoree 'Jamillah Washington' (Sept 2024, fetched 2026-08-12): unit label 'Women's Health (Silverstein 7)'; antepartum/postpartum population after the Feb 2023 split (Gyn/Gyn-Onc moved to Ravdin 6). Room range verified (wayfinding).",
+      "note": "EP-23 ruling (a) verified, 2026-08-13. Refutes the EP-8 medicine-backfill hypothesis. Source reflects Sept 2024; no newer floor-naming source found in the 2026-08 sweep.",
+      "capabilities": {
+        "telemetry": "none",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Obstetric floor - continuous fetal/maternal monitoring is not modeled as cardiac telemetry; conservatively not telemetry-capable. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 4,
+        "confidence": "inferred",
+        "note": "Antepartum/postpartum couplet-care acuity - 4:1 (EP-23, follows identity ruling)."
+      }
+    },
+    {
+      "id": "unit.silverstein.8",
+      "name": "Silverstein 8 — Postpartum / Mother-Baby (inferred)",
+      "service": "Unassigned (inferred Postpartum / Mother-Baby; no current floor-naming source)",
+      "unit_type": "med_surg",
+      "building": "wing.silverstein",
+      "level": 8,
+      "elevator_core": "Silverstein",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "801-826",
+        "kind": "inpatient"
+      },
+      "confidence": "inferred",
+      "era": "timeless",
+      "source": "daisyfoundation.org honoree 'Robyn Hilliard' (Nov 2018): Silverstein 8 nurses cared for postpartum patients on loaned Silverstein 7 beds; active 2026 HUP 'Postpartum'/'Mother Baby' requisitions name no floor; OB never moved to the Pavilion. Room range verified (wayfinding).",
+      "note": "EP-23 ruling (c) inferred, owner-approved 2026-08-13: continuity argument — the Women's Health block brackets this floor (Silverstein 7 antepartum/postpartum below, ICN on the Silverstein core). Identity remains unsourced post-2021; upgrade when a floor-naming source appears.",
+      "capabilities": {
+        "telemetry": "none",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Obstetric floor - continuous fetal/maternal monitoring is not modeled as cardiac telemetry; conservatively not telemetry-capable. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 4,
+        "confidence": "inferred",
+        "note": "Postpartum couplet-care acuity - 4:1 (EP-23, follows identity ruling)."
+      }
+    },
+    {
+      "id": "unit.founders.8",
+      "name": "Founders 8 — MICU",
+      "service": "Medical Critical Care (MICU)",
+      "unit_type": "icu",
+      "building": "wing.founders",
+      "level": 8,
+      "elevator_core": "Founders",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "875-886",
+        "kind": "icu_bay"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "instagram.com/p/C5uJNKHNuWW (@hupnursing, 2024-04-13): 'In March, the Founders 8 MICU celebrated one year of being open since transferring from Cedar – MOB 3'; careers.pennmedicine.org req 17920408 (posted 2026-06-24, verbatim verified 2026-08-13): MICU Clinical Nurse 2 '…rotated between nights and days- Founders 8'. Room range verified (wayfinding).",
+      "note": "EP-23 ruling (a) verified, 2026-08-13: the MICU opened on Founders 8 in March 2023 after transferring from HUP Cedar – MOB 3, superseding the med.upenn.edu/HUPMICU '9th floor of the Founders building' directions (stale; Founders 9 retired to archive). Directory range 875-886 gives only 12 rooms — reported MICU capacity is likely larger; kept directory-honest pending better data.",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "ICU bays are continuously monitored - telemetry-capable throughout. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 2,
+        "confidence": "inferred",
+        "note": "ICU standard 2:1 (1:1 for ECMO/CRRT-level patients - not modeled). EP-23, follows identity ruling."
+      }
+    },
+    {
+      "id": "unit.silverstein.9",
+      "name": "Silverstein 9 — Pulmonology",
+      "service": "Inpatient Pulmonology / Pulmonary-GI Medicine",
+      "unit_type": "med_surg",
+      "building": "wing.silverstein",
+      "level": 9,
+      "elevator_core": "Silverstein",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "901-930, 951-955",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "careers.pennmedicine.org 'Clinical Nurse 1 — Inpatient Pulmonology — Silverstein 9 — HUP' (2024); Coursicle NURS 2450 'Silverstein 9/Ravdin 9 — Pulmonary/GI Medicine'",
+      "note": "Pre-2021 this floor was Neuroscience (now Pavilion 10). Paired with Ravdin 9.",
+      "capabilities": {
+        "telemetry": "none",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "No telemetry mention in the unit's service identity - conservatively not telemetry-capable; correct per-unit as verified. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 5,
+        "confidence": "inferred",
+        "note": "Med-surg 5:1."
+      }
+    },
+    {
+      "id": "unit.ravdin.9",
+      "name": "Ravdin 9",
+      "service": "Pulmonary / GI / General Medicine",
+      "unit_type": "med_surg",
+      "building": "wing.ravdin",
+      "level": 9,
+      "elevator_core": "Ravdin",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "931-949, 956-958",
+        "kind": "inpatient"
+      },
+      "confidence": "reported",
+      "era": "post_pavilion",
+      "source": "Coursicle NURS 2450 'Silverstein 9/Ravdin 9'; careers.pennmedicine.org 'Clinical Nurse 2 — Ravdin 9 at HUP'",
+      "note": "Pre-2021: Urology / Head & Neck Surgery. Floor 9 is served by three elevator cores — the classic wayfinding failure point.",
+      "capabilities": {
+        "telemetry": "none",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "No telemetry mention in the unit's service identity - conservatively not telemetry-capable; correct per-unit as verified. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 5,
+        "confidence": "inferred",
+        "note": "Med-surg 5:1."
+      }
+    },
+    {
+      "id": "unit.silverstein.10",
+      "name": "Silverstein 10",
+      "service": "Unassigned (former Cardiac Surgery)",
+      "unit_type": "med_surg",
+      "building": "wing.silverstein",
+      "level": 10,
+      "elevator_core": "Silverstein",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "1001-1030",
+        "kind": "inpatient"
+      },
+      "confidence": "unverified",
+      "era": "unknown",
+      "source": "Guide to Units 'Cardiac Surgery' is pre-2021 and stale (service moved to Pavilion 9); no current source found",
+      "capabilities": {
+        "telemetry": "none",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Unit identity unknown - conservatively not telemetry-capable. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 5,
+        "confidence": "inferred",
+        "note": "Generic med-surg default pending identity ruling."
+      }
+    },
+    {
+      "id": "unit.founders.10",
+      "name": "Founders 10 — Advanced Medicine",
+      "service": "Advanced Medicine (general medicine w/ telemetry)",
+      "unit_type": "med_surg",
+      "building": "wing.founders",
+      "level": 10,
+      "elevator_core": "Founders",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "1060-1084",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "Coursicle NURS 2450 'HUP Founders 10 — Advanced Medicine'; LinkedIn 'Clinical Nurse 1 — Founders 10, Advanced Medicine — HUP'",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Service identity ('w/ telemetry' / 'medical/telemetry' / 'monitored') implies unit-wide telemetry. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 4,
+        "confidence": "inferred",
+        "note": "Monitored med-surg 4:1."
+      }
+    },
+    {
+      "id": "unit.silverstein.11",
+      "name": "Silverstein 11",
+      "service": "General Medicine / Pulmonary / Infectious Diseases",
+      "unit_type": "med_surg",
+      "building": "wing.silverstein",
+      "level": 11,
+      "elevator_core": "Silverstein",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "1101-1130",
+        "kind": "inpatient"
+      },
+      "confidence": "reported",
+      "era": "pre_2021",
+      "source": "nursing.upenn.edu Guide to Units (undated pre-2021; plausibly still current — medicine floors were backfilled, not moved)",
+      "capabilities": {
+        "telemetry": "none",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "No telemetry mention in the unit's service identity - conservatively not telemetry-capable; correct per-unit as verified. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 5,
+        "confidence": "inferred",
+        "note": "Med-surg 5:1."
+      }
+    },
+    {
+      "id": "unit.founders.11",
+      "name": "Founders 11 — Advanced Medicine",
+      "service": "Advanced Medicine (medical/telemetry)",
+      "unit_type": "med_surg",
+      "building": "wing.founders",
+      "level": 11,
+      "elevator_core": "Founders",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "1160-1186",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "careers.pennmedicine.org 'Founders 11 Advanced Medicine Unit at HUP — dynamic 25-bed medical/telemetry unit'",
+      "note": "25 staffed beds reported vs 27 room-number slots — slot count kept, discrepancy recorded.",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Service identity ('w/ telemetry' / 'medical/telemetry' / 'monitored') implies unit-wide telemetry. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 4,
+        "confidence": "inferred",
+        "note": "Monitored med-surg 4:1."
+      }
+    },
+    {
+      "id": "unit.silverstein.12",
+      "name": "Silverstein 12 — General Medicine",
+      "service": "General Medicine (HUPlan)",
+      "unit_type": "med_surg",
+      "building": "wing.silverstein",
+      "level": 12,
+      "elevator_core": "Silverstein",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "1201-1230",
+        "kind": "inpatient"
+      },
+      "confidence": "reported",
+      "era": "post_pavilion",
+      "source": "careers.pennmedicine.org 'HUPlan RN — General Medicine — Silverstein 12 — HUP'",
+      "note": "Pre-2021: GI Surgery. Silverstein terminates at 12; above this Founders is the only HUP Main tower with beds.",
+      "capabilities": {
+        "telemetry": "none",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "No telemetry mention in the unit's service identity - conservatively not telemetry-capable; correct per-unit as verified. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 5,
+        "confidence": "inferred",
+        "note": "Med-surg 5:1."
+      }
+    },
+    {
+      "id": "unit.founders.12",
+      "name": "Founders 12 — General Medicine",
+      "service": "General Medicine",
+      "unit_type": "med_surg",
+      "building": "wing.founders",
+      "level": 12,
+      "elevator_core": "Founders",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "1260-1289",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "careers.pennmedicine.org 'Nursing Assistant — General Medicine — Founders 12 HUP'; DAISY award listing 'HUP Founders 12 (Medicine)'",
+      "capabilities": {
+        "telemetry": "none",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "No telemetry mention in the unit's service identity - conservatively not telemetry-capable; correct per-unit as verified. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 5,
+        "confidence": "inferred",
+        "note": "Med-surg 5:1."
+      }
+    },
+    {
+      "id": "unit.founders.14",
+      "name": "Founders 14 — General Medicine",
+      "service": "General Medicine / Medical-Surgical (monitored)",
+      "unit_type": "med_surg",
+      "building": "wing.founders",
+      "level": 14,
+      "elevator_core": "Founders",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "1460-1489",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "careers.pennmedicine.org 'Founders 14 … 39 monitored patient care beds'",
+      "note": "39 beds reported vs 30 room-number slots (likely doubles/flex) — slot count kept, discrepancy recorded. No floor 13 in the HUP Main series.",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Service identity ('w/ telemetry' / 'medical/telemetry' / 'monitored') implies unit-wide telemetry. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 4,
+        "confidence": "inferred",
+        "note": "Monitored med-surg 4:1."
+      }
+    },
+    {
+      "id": "unit.rhoads.3",
+      "name": "Rhoads 3 — ENT/Plastics Surgery",
+      "service": "ENT / Plastic Surgery",
+      "unit_type": "med_surg",
+      "building": "wing.rhoads",
+      "level": 3,
+      "elevator_core": "Rhoads",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "3001-3026",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "careers.pennmedicine.org 'Clinical Nurse 1 — HUP ENT/Plastic Surgical Unit (Rhoads 3)'",
+      "note": "Pre-2021: Hematologic Oncology (moved to Pavilion 14). Rhoads is now an all-surgical building.",
+      "capabilities": {
+        "telemetry": "none",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "No telemetry mention in the unit's service identity - conservatively not telemetry-capable; correct per-unit as verified. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 5,
+        "confidence": "inferred",
+        "note": "Med-surg 5:1."
+      }
+    },
+    {
+      "id": "unit.rhoads.4",
+      "name": "Rhoads 4 — GI/Bariatric Surgery",
+      "service": "GI / Bariatric Surgery",
+      "unit_type": "med_surg",
+      "building": "wing.rhoads",
+      "level": 4,
+      "elevator_core": "Rhoads",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "4001-4026",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "careers.pennmedicine.org 'Clinical Nurse 1 — HUP Rhoads 4 Surgical Unit'; Coursicle NURS 2450",
+      "capabilities": {
+        "telemetry": "none",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "No telemetry mention in the unit's service identity - conservatively not telemetry-capable; correct per-unit as verified. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 5,
+        "confidence": "inferred",
+        "note": "Med-surg 5:1."
+      }
+    },
+    {
+      "id": "unit.rhoads.5",
+      "name": "Rhoads 5 — SICU",
+      "service": "Surgical Critical Care (SICU)",
+      "unit_type": "icu",
+      "building": "wing.rhoads",
+      "level": 5,
+      "elevator_core": "Rhoads",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "5001-5024",
+        "kind": "icu_bay"
+      },
+      "confidence": "verified",
+      "era": "timeless",
+      "source": "Penn Medicine requisition (WayUp mirror, verified 2026-08-12): 'The Rhoads 5 SICU is a 24 bed unit' (Gold Beacon; GI/vascular/thoracic/ESS/surg-onc/colorectal/ENT); departments.med.upenn.edu Critical Care Medicine fellowship (verbatim verified 2026-08-13): 'General Surgical and Transplant Critical Care (SICU) … Location: Rhoads 5 and 11 Center' (dir. Andrew Gold); daisyfoundation.org 'Rhoads 5 SICU Team' (Oct 2019). Rooms 5001-5024 = exactly the reported 24 beds.",
+      "note": "EP-23 ruling (a) verified, 2026-08-13. Supersedes the retired 'Founders 5 — SICU' entry (see archive/ep23_roster_rulings.json): evidence for a CURRENT Founders 5 ICU was thin — '5 Founders SICU' survives only as a teaching-room name (departments.med.upenn.edu aortic surgery fellowship page). Owner ruled one 24-bed SICU on Rhoads 5.",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "ICU bays are continuously monitored - telemetry-capable throughout. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 2,
+        "confidence": "inferred",
+        "note": "ICU standard 2:1 (1:1 for ECMO/CRRT-level patients - not modeled). EP-23, follows identity ruling."
+      }
+    },
+    {
+      "id": "unit.rhoads.6",
+      "name": "Rhoads 6 — Surgical Unit",
+      "service": "General Surgery",
+      "unit_type": "med_surg",
+      "building": "wing.rhoads",
+      "level": 6,
+      "elevator_core": "Rhoads",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "6001-6026",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "careers.pennmedicine.org 'Clinical Nurse 1 — HUP Rhoads 6 Surgical Unit'",
+      "note": "Pre-2021: Hematologic Oncology.",
+      "capabilities": {
+        "telemetry": "none",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "No telemetry mention in the unit's service identity - conservatively not telemetry-capable; correct per-unit as verified. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 5,
+        "confidence": "inferred",
+        "note": "Med-surg 5:1."
+      }
+    },
+    {
+      "id": "unit.rhoads.7",
+      "name": "Rhoads 7 — Urology/Colorectal Surgery",
+      "service": "Urology / Colorectal / General Surgery",
+      "unit_type": "med_surg",
+      "building": "wing.rhoads",
+      "level": 7,
+      "elevator_core": "Rhoads",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "7001-7026",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "careers.pennmedicine.org 'Clinical Nurse 1/2 — HUP Rhoads 7 Surgical Unit'; Coursicle NURS 2450",
+      "note": "Pre-2021: Heme Onc / stem cell transplant.",
+      "capabilities": {
+        "telemetry": "none",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "No telemetry mention in the unit's service identity - conservatively not telemetry-capable; correct per-unit as verified. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 5,
+        "confidence": "inferred",
+        "note": "Med-surg 5:1."
+      }
+    },
+    {
+      "id": "unit.ravdin.ld",
+      "name": "Labor & Delivery (Ravdin)",
+      "service": "Obstetrics — Labor & Delivery",
+      "unit_type": "l_and_d",
+      "building": "wing.ravdin",
+      "level": 2,
+      "elevator_core": "Ravdin",
+      "rooms": {
+        "source": "count",
+        "count": 13,
+        "number_prefix": "LD-",
+        "kind": "labor_delivery"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "pennmedicine.org 'Labor and Delivery at HUP' — 'three operating rooms and 13 spacious labor and delivery suites'; Ravdin elevator per wayfinding",
+      "note": "Floor placement approximate (L&D listed near Ravdin level 2 in topology).",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 1,
+        "confidence": "inferred",
+        "note": "Continuous obstetric (maternal/fetal) monitoring - not adult cardiac tele slots. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 2,
+        "confidence": "inferred",
+        "note": "Active labor is 1:1; 2:1 as a unit-level average target."
+      }
+    },
+    {
+      "id": "unit.silverstein.icn",
+      "name": "Intensive Care Nursery (Silverstein)",
+      "service": "Neonatology — Level III ICN",
+      "unit_type": "nursery",
+      "building": "wing.silverstein",
+      "level": 6,
+      "elevator_core": "Silverstein",
+      "rooms": {
+        "source": "count",
+        "count": 31,
+        "number_prefix": "ICN-",
+        "kind": "nursery_bay"
+      },
+      "confidence": "reported",
+      "era": "timeless",
+      "source": "PA-DOH licensed inventory: '31 intensive care and intermediate care nurseries' (+47 newborn bassinets, not modeled); ICN in Silverstein per wayfinding",
+      "note": "Floor placement UNVERIFIED (bassinets not modeled as rooms).",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 1,
+        "confidence": "inferred",
+        "note": "Neonatal continuous monitoring - not adult tele slots. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 2,
+        "confidence": "inferred",
+        "note": "Level III neonatal 1:1-3:1 by acuity; 2:1 unit target."
+      }
+    },
+    {
+      "id": "unit.pavilion.7.city",
+      "name": "Pavilion 7 City — Vascular Surgical PCU",
+      "service": "Vascular Surgery (progressive care)",
+      "unit_type": "stepdown",
+      "building": "bldg.pavilion",
+      "level": 7,
+      "elevator_core": "Pavilion Bank B",
+      "rooms": {
+        "source": "pavilion_wing",
+        "floor": 7,
+        "wing": "city",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "careers.pennmedicine.org 'Clinical Nurse 1/2 — HUP Pavilion — 7 City Vascular Surgical PCU'",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Progressive-care unit - monitored throughout. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 3,
+        "confidence": "inferred",
+        "note": "Progressive care 3:1."
+      }
+    },
+    {
+      "id": "unit.pavilion.7.center",
+      "name": "Pavilion 7 Center — Heart & Vascular ICU (wing inferred)",
+      "service": "Heart & Vascular ICU (floor reported; wing inferred)",
+      "unit_type": "icu",
+      "building": "bldg.pavilion",
+      "level": 7,
+      "elevator_core": "Pavilion Banks A/B (49-60 via A, 13-24 via B)",
+      "rooms": {
+        "source": "pavilion_wing",
+        "floor": 7,
+        "wing": "center",
+        "kind": "icu_bay"
+      },
+      "confidence": "reported",
+      "era": "post_pavilion",
+      "source": "departments.med.upenn.edu Critical Care Medicine fellowship (verbatim verified 2026-08-13): 'Cardiothoracic Critical Care (HVICU) … Location: Heart and Vascular ICU, Pavilion 7 Hospital of the University of Pennsylvania/ PAC3 Penn Presbyterian Medical Center' — names the floor, not the wing",
+      "note": "EP-23 ruling (owner-approved 2026-08-13): wing placement inferred from the ICU-in-Center-wing pattern (cf. 11 Center transplant SICU). May be functionally the same unit as the Pavilion 9 City HVICU — kept separate pending data, cross-noted there. With 7 City vascular PCU + 7 Campus ward, floor 7 forms the heart-&-vascular/thoracic block.",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "ICU bays are continuously monitored - telemetry-capable throughout (Pavilion rooms are acuity-adaptable by design). Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 2,
+        "confidence": "inferred",
+        "note": "ICU standard 2:1 (1:1 for ECMO/CRRT-level patients - not modeled). EP-23, follows identity ruling."
+      }
+    },
+    {
+      "id": "unit.pavilion.7.campus",
+      "name": "Pavilion 7 Campus — Heart & Vascular / Thoracic Ward",
+      "service": "Unassigned (inferred Heart & Vascular / Thoracic — ward level)",
+      "unit_type": "med_surg",
+      "building": "bldg.pavilion",
+      "level": 7,
+      "elevator_core": "Pavilion Bank A",
+      "rooms": {
+        "source": "pavilion_wing",
+        "floor": 7,
+        "wing": "campus",
+        "kind": "inpatient"
+      },
+      "confidence": "inferred",
+      "era": "post_pavilion",
+      "source": "Floor 7 has patient rooms (verified); 7 City = Vascular Surgical PCU (careers requisitions, verified 2026-08-12); an unplaced 'HUP Pavilion Thoracic Surgery Unit' requisition exists (careers req 13586664)",
+      "note": "EP-23 ruling (c) inferred, owner-approved 2026-08-13: ward-level beds of the floor-7 heart-&-vascular/thoracic block — post-op patients out of the ICU/PCU monitoring window but not ready for discharge. Identity remains unsourced; upgrade when a wing-naming source appears.",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Pavilion rooms are acuity-adaptable by design (all-private, ICU-convertible) - telemetry-capable throughout, inferred. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 4,
+        "confidence": "inferred",
+        "note": "Cardiac/thoracic tele-ward acuity - 4:1 (EP-23, follows identity ruling)."
+      }
+    },
+    {
+      "id": "unit.pavilion.8.city",
+      "name": "Pavilion 8 City — Cardiac",
+      "service": "Cardiac Medicine / Surgery",
+      "unit_type": "med_surg",
+      "building": "bldg.pavilion",
+      "level": 8,
+      "elevator_core": "Pavilion Bank B",
+      "rooms": {
+        "source": "pavilion_wing",
+        "floor": 8,
+        "wing": "city",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "Coursicle NURS 2450 'HUP Pavilion: 8 City — Cardiac Medical/Surgical'",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Pavilion rooms are acuity-adaptable by design (all-private, ICU-convertible) - telemetry-capable throughout, inferred. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 4,
+        "confidence": "inferred",
+        "note": "Monitored med-surg 4:1."
+      }
+    },
+    {
+      "id": "unit.pavilion.8.center",
+      "name": "Pavilion 8 Center — Cardiac",
+      "service": "Cardiac Medicine / Surgery",
+      "unit_type": "med_surg",
+      "building": "bldg.pavilion",
+      "level": 8,
+      "elevator_core": "Pavilion Banks A/B (49-60 via A, 13-24 via B)",
+      "rooms": {
+        "source": "pavilion_wing",
+        "floor": 8,
+        "wing": "center",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "Coursicle NURS 2450 'HUP Pavilion: 8 Center — Cardiac Medical/Surgical'",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Pavilion rooms are acuity-adaptable by design (all-private, ICU-convertible) - telemetry-capable throughout, inferred. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 4,
+        "confidence": "inferred",
+        "note": "Monitored med-surg 4:1."
+      }
+    },
+    {
+      "id": "unit.pavilion.9.campus",
+      "name": "Pavilion 9 Campus — CV Surgical PCU",
+      "service": "Cardiac Surgery (progressive care)",
+      "unit_type": "stepdown",
+      "building": "bldg.pavilion",
+      "level": 9,
+      "elevator_core": "Pavilion Bank A",
+      "rooms": {
+        "source": "pavilion_wing",
+        "floor": 9,
+        "wing": "campus",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "Coursicle NURS 2450; careers.pennmedicine.org HVICU posting — '9 Campus and Center are two 24-bed cardiovascular progressive care surgical units'",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Progressive-care unit - monitored throughout. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 3,
+        "confidence": "inferred",
+        "note": "Progressive care 3:1."
+      }
+    },
+    {
+      "id": "unit.pavilion.9.center",
+      "name": "Pavilion 9 Center — CV Surgical PCU",
+      "service": "Cardiac Surgery (progressive care)",
+      "unit_type": "stepdown",
+      "building": "bldg.pavilion",
+      "level": 9,
+      "elevator_core": "Pavilion Banks A/B (49-60 via A, 13-24 via B)",
+      "rooms": {
+        "source": "pavilion_wing",
+        "floor": 9,
+        "wing": "center",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "Coursicle NURS 2450; careers.pennmedicine.org HVICU posting — '24-bed cardiovascular progressive care surgical units'",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Progressive-care unit - monitored throughout. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 3,
+        "confidence": "inferred",
+        "note": "Progressive care 3:1."
+      }
+    },
+    {
+      "id": "unit.pavilion.9.city",
+      "name": "Pavilion 9 City — HVICU",
+      "service": "Heart & Vascular ICU (post-op cardiac/vascular; ECMO, IABP, VAD, CRRT)",
+      "unit_type": "icu",
+      "building": "bldg.pavilion",
+      "level": 9,
+      "elevator_core": "Pavilion Bank B",
+      "rooms": {
+        "source": "pavilion_wing",
+        "floor": 9,
+        "wing": "city",
+        "kind": "icu_bay"
+      },
+      "confidence": "reported",
+      "era": "post_pavilion",
+      "source": "careers.pennmedicine.org 'Heart and Vascular ICU at HUP (HVICU/CVICU) — 36-bed ICU'; floor 9 verified, City-wing placement inferred",
+      "note": "36 licensed beds reported vs 24 City-wing slots — the unit likely spans additional floor-9 space; modeled as the 24 City slots with the discrepancy recorded. EP-23 (2026-08-13): an owner-found fellowship excerpt places a 'Heart and Vascular ICU' on Pavilion 7 (see unit.pavilion.7.center) — possibly the same unit or a second site; kept separate pending data.",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "ICU bays are continuously monitored - telemetry-capable throughout. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 2,
+        "confidence": "inferred",
+        "note": "ICU standard 2:1 (1:1 for ECMO/CRRT-level patients - not modeled)."
+      }
+    },
+    {
+      "id": "unit.pavilion.10.campus",
+      "name": "Pavilion 10 Campus — Neurosurgery",
+      "service": "Neurosurgery",
+      "unit_type": "med_surg",
+      "building": "bldg.pavilion",
+      "level": 10,
+      "elevator_core": "Pavilion Bank A",
+      "rooms": {
+        "source": "pavilion_wing",
+        "floor": 10,
+        "wing": "campus",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "Coursicle NURS 2450 'HUP Pavilion: 10 Campus — Neurosurgery'",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Pavilion rooms are acuity-adaptable by design (all-private, ICU-convertible) - telemetry-capable throughout, inferred. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 5,
+        "confidence": "inferred",
+        "note": "Med-surg 5:1."
+      }
+    },
+    {
+      "id": "unit.pavilion.10.center",
+      "name": "Pavilion 10 Center — Neurology",
+      "service": "Medical / Surgical Neurology",
+      "unit_type": "med_surg",
+      "building": "bldg.pavilion",
+      "level": 10,
+      "elevator_core": "Pavilion Banks A/B (49-60 via A, 13-24 via B)",
+      "rooms": {
+        "source": "pavilion_wing",
+        "floor": 10,
+        "wing": "center",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "Coursicle NURS 2450 'HUP Pavilion: 10 Center — Medical/Surgical Neurology'",
+      "note": "The 12-bed Epilepsy Monitoring Unit (video-EEG, dedicated control room) sits within the floor-10 neuro block.",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Pavilion rooms are acuity-adaptable by design (all-private, ICU-convertible) - telemetry-capable throughout, inferred. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 5,
+        "confidence": "inferred",
+        "note": "Med-surg 5:1."
+      }
+    },
+    {
+      "id": "unit.pavilion.10.city",
+      "name": "Pavilion 10 City — Neuro ICU",
+      "service": "Neurocritical Care",
+      "unit_type": "icu",
+      "building": "bldg.pavilion",
+      "level": 10,
+      "elevator_core": "Pavilion Bank B",
+      "rooms": {
+        "source": "pavilion_wing",
+        "floor": 10,
+        "wing": "city",
+        "kind": "icu_bay"
+      },
+      "confidence": "reported",
+      "era": "post_pavilion",
+      "source": "Penn neurocritical care program — 'one neuro ICU has 24 beds, located on the 10th floor of the Pavilion'; 24 beds = 24 City slots; wing placement inferred",
+      "note": "Sources imply a second, smaller neuro ICU exists somewhere — location unsourced, not modeled.",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "ICU bays are continuously monitored - telemetry-capable throughout. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 2,
+        "confidence": "inferred",
+        "note": "ICU standard 2:1 (1:1 for ECMO/CRRT-level patients - not modeled)."
+      }
+    },
+    {
+      "id": "unit.pavilion.11.city",
+      "name": "Pavilion 11 City — Transplant Surgery",
+      "service": "Abdominal / Solid-Organ Transplant Surgery",
+      "unit_type": "med_surg",
+      "building": "bldg.pavilion",
+      "level": 11,
+      "elevator_core": "Pavilion Bank B",
+      "rooms": {
+        "source": "pavilion_wing",
+        "floor": 11,
+        "wing": "city",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "Coursicle NURS 2450 'HUP Pavilion: 11 City — Transplant Surgery'; Penn Today year-one review",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Pavilion rooms are acuity-adaptable by design (all-private, ICU-convertible) - telemetry-capable throughout, inferred. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 4,
+        "confidence": "inferred",
+        "note": "Transplant surgical acuity - 4:1."
+      }
+    },
+    {
+      "id": "unit.pavilion.11.center",
+      "name": "Pavilion 11 Center — Transplant ICU",
+      "service": "Transplant Critical Care",
+      "unit_type": "icu",
+      "building": "bldg.pavilion",
+      "level": 11,
+      "elevator_core": "Pavilion Banks A/B (49-60 via A, 13-24 via B)",
+      "rooms": {
+        "source": "pavilion_wing",
+        "floor": 11,
+        "wing": "center",
+        "kind": "icu_bay"
+      },
+      "confidence": "reported",
+      "era": "post_pavilion",
+      "source": "Penn Today 'The Pavilion at year one' — abdominal transplant ICU and floor co-located on 11 Center and 11 City",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "ICU bays are continuously monitored - telemetry-capable throughout. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 2,
+        "confidence": "inferred",
+        "note": "ICU standard 2:1 (1:1 for ECMO/CRRT-level patients - not modeled)."
+      }
+    },
+    {
+      "id": "unit.pavilion.11.campus",
+      "name": "Pavilion 11 Campus — Oncology (Cellular Therapy)",
+      "service": "Oncology — stem cell transplant / cellular therapy",
+      "unit_type": "med_surg",
+      "building": "bldg.pavilion",
+      "level": 11,
+      "elevator_core": "Pavilion Bank A",
+      "rooms": {
+        "source": "pavilion_wing",
+        "floor": 11,
+        "wing": "campus",
+        "kind": "inpatient"
+      },
+      "confidence": "reported",
+      "era": "post_pavilion",
+      "source": "careers.pennmedicine.org Inpatient Medical Oncology posting — '11 & 14 Campus nurses care for… stem cell transplant, cellular therapy'",
+      "note": "EP-23 (owner ruling 2026-08-13): keep Oncology/BMT. A 2026-vintage requisition pairs 'Cardiology PCU — 8 Center/11 Campus' (req 18043280), conflicting with the 2025 Oncology/BMT ANM source ('11 & 14 Campus', Flynn fellowship posting) — recorded as a roadmap open item, unresolved.",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Pavilion rooms are acuity-adaptable by design (all-private, ICU-convertible) - telemetry-capable throughout, inferred. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 4,
+        "confidence": "inferred",
+        "note": "Oncology/SCT acuity - 4:1."
+      }
+    },
+    {
+      "id": "unit.pavilion.12.campus",
+      "name": "Pavilion 12 Campus — Solid Oncology",
+      "service": "Medical Oncology (chemo/biotherapy, auto SCT, trials)",
+      "unit_type": "med_surg",
+      "building": "bldg.pavilion",
+      "level": 12,
+      "elevator_core": "Pavilion Bank A",
+      "rooms": {
+        "source": "pavilion_wing",
+        "floor": 12,
+        "wing": "campus",
+        "kind": "inpatient",
+        "slots": "25-60"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "careers.pennmedicine.org '12 Campus is a 36-bed medical oncology unit' (Wayback 2023-09-30, verified 2026-08-12); Coursicle NURS 2450",
+      "note": "EP-23 (2026-08-13): the 36-vs-24 discrepancy is resolved — the unit takes slots 25-60 (Campus 25-48 + Center 49-60), matching the verified 36-bed description; the Center wing's remaining slots 13-24 are the Oncology MICU (unit.pavilion.12.center).",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Pavilion rooms are acuity-adaptable by design (all-private, ICU-convertible) - telemetry-capable throughout, inferred. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 4,
+        "confidence": "inferred",
+        "note": "Oncology/SCT acuity - 4:1."
+      }
+    },
+    {
+      "id": "unit.pavilion.12.center",
+      "name": "Pavilion 12 Center — Oncology MICU (12 beds; wing inferred)",
+      "service": "Oncology MICU (medical critical care service)",
+      "unit_type": "icu",
+      "building": "bldg.pavilion",
+      "level": 12,
+      "elevator_core": "Pavilion Banks A/B (49-60 via A, 13-24 via B)",
+      "rooms": {
+        "source": "pavilion_wing",
+        "floor": 12,
+        "wing": "center",
+        "kind": "icu_bay",
+        "slots": "13-24"
+      },
+      "confidence": "reported",
+      "era": "post_pavilion",
+      "source": "careers.pennmedicine.org Lead Advanced Practitioner MICU req 17683468 (live 2026-08-12): service 'expands into a new, state of the art, 12 Bed Oncology MICU'; Penn Today 2021-10-08: dedicated oncology ICU 'adjacent to our inpatient oncology unit on the same floor'. Floor/wing never publicly named.",
+      "note": "EP-23 ruling (owner-approved 2026-08-13): existence reported; placement inferred — 12 Campus's verified 36 beds absorb slots 49-60, leaving exactly these 12 rooms, matching the ICU-in-Center-wing pattern (cf. 11 Center). Pavilion rooms flex to ICU level per owner research; expected to serve both onc services across floors 11/12/14.",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "ICU bays are continuously monitored - telemetry-capable throughout (Pavilion rooms are acuity-adaptable by design). Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 2,
+        "confidence": "inferred",
+        "note": "ICU standard 2:1 (1:1 for ECMO/CRRT-level patients - not modeled). EP-23, follows identity ruling."
+      }
+    },
+    {
+      "id": "unit.pavilion.12.city",
+      "name": "Pavilion 12 City — Solid Oncology",
+      "service": "Medical / Solid Oncology",
+      "unit_type": "med_surg",
+      "building": "bldg.pavilion",
+      "level": 12,
+      "elevator_core": "Pavilion Bank B",
+      "rooms": {
+        "source": "pavilion_wing",
+        "floor": 12,
+        "wing": "city",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "careers.pennmedicine.org req 9588949 (Wayback 2022-06-25, verified 2026-08-12): 'Clinical Practice Lead RN IV or CNS for 12 City Oncology at the New Patient Pavilion' (posted May 2022)",
+      "note": "EP-23 ruling (a) verified, 2026-08-13: second solid-oncology unit on the floor — mirrors liquid oncology's two-unit pattern (14 Campus + 14 Center). Source is 2022-vintage; nothing newer names the wing.",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Pavilion rooms are acuity-adaptable by design (all-private, ICU-convertible) - telemetry-capable throughout, inferred. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 4,
+        "confidence": "inferred",
+        "note": "Oncology/SCT acuity - 4:1 (EP-23, follows identity ruling)."
+      }
+    },
+    {
+      "id": "unit.pavilion.14.campus",
+      "name": "Pavilion 14 Campus — Liquid Oncology",
+      "service": "Hematologic Oncology (allo/auto SCT, cellular therapy)",
+      "unit_type": "med_surg",
+      "building": "bldg.pavilion",
+      "level": 14,
+      "elevator_core": "Pavilion Bank A",
+      "rooms": {
+        "source": "pavilion_wing",
+        "floor": 14,
+        "wing": "campus",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "Coursicle NURS 2450 'HUP Pavilion: 14 Campus — Liquid Oncology'; careers.pennmedicine.org '11 & 14 Campus' posting",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Pavilion rooms are acuity-adaptable by design (all-private, ICU-convertible) - telemetry-capable throughout, inferred. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 4,
+        "confidence": "inferred",
+        "note": "Oncology/SCT acuity - 4:1."
+      }
+    },
+    {
+      "id": "unit.pavilion.14.center",
+      "name": "Pavilion 14 Center — Liquid Oncology",
+      "service": "Hematologic Oncology",
+      "unit_type": "med_surg",
+      "building": "bldg.pavilion",
+      "level": 14,
+      "elevator_core": "Pavilion Banks A/B (49-60 via A, 13-24 via B)",
+      "rooms": {
+        "source": "pavilion_wing",
+        "floor": 14,
+        "wing": "center",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "Coursicle NURS 2450 'HUP Pavilion: 14 Center — Liquid Oncology'",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Pavilion rooms are acuity-adaptable by design (all-private, ICU-convertible) - telemetry-capable throughout, inferred. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 4,
+        "confidence": "inferred",
+        "note": "Oncology/SCT acuity - 4:1."
+      }
+    },
+    {
+      "id": "unit.pavilion.ed",
+      "name": "Pavilion ED (boarding-capable)",
+      "service": "Emergency Medicine",
+      "unit_type": "ed",
+      "building": "bldg.pavilion",
+      "level": 1,
+      "elevator_core": null,
+      "rooms": {
+        "source": "count",
+        "count": 122,
+        "number_prefix": "ED-",
+        "kind": "ed_bay"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "careers.pennmedicine.org Pavilion ED posting — 61 exam rooms + 9 rapid-assessment + 4 resuscitation bays + 36 acute-care + 12 forward-flow = 122 treatment spaces across two ED floors",
+      "note": "Treatment spaces, not licensed beds — but they board admitted patients ('one of three 2-floored EDs in the country').",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "ED treatment spaces are monitored throughout. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 4,
+        "confidence": "inferred",
+        "note": "ED staffing is zoned in reality (resus 1-2:1, acute 3-4:1, fast-track higher); flat 4:1 modeling simplification."
+      }
+    }
+  ]
+}

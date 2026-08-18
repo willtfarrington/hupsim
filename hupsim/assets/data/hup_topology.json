@@ -1,0 +1,429 @@
+{
+  "$schema_note": "Ad-hoc property graph. nodes[] are physical containers (campus > building > floor > unit). edges[] are traversable or containment relations. Every node/edge carries `confidence` and `source` so stale or inferred data is separable from directory-verified data.",
+  "meta": {
+    "subject": "Hospital of the University of Pennsylvania (HUP), Penn Medicine",
+    "compiled": "2026-08-10",
+    "primary_sources": [
+      "HUP Connector wayfinding directory PDF (med.upenn.edu/neurology) - authoritative for PATIENT ROOMS room-number-to-elevator-core mapping and wing floor spans",
+      "facilities.upenn.edu HUP building record - authoritative for wing enumeration",
+      "pennmedicine.org Pavilion/Clifton 'Getting around' - authoritative for Pavilion room numbering and wing scheme",
+      "nursing.upenn.edu HUP Guide to Units (undated, likely pre-2021) - unit assignments, STALE",
+      "Penn Nursing NURS 2450 clinical placement list (post-Pavilion) - unit assignments, semi-current",
+      "Penn archives / donor recognition - construction dates"
+    ],
+    "known_limitations": [
+      "Unit-to-floor assignments at HUP Main churn continuously and were massively reshuffled by the Oct 30 2021 Pavilion opening. Treat unit fields as hypotheses, not facts.",
+      "No public floor-by-floor directory exists for Maloney or White. Their contents here are inferred from scattered practice-location pages.",
+      "Sub-grade tunnel topology is not published. Tunnel edges are asserted from narrative sources only.",
+      "The Pavilion was renamed The Clifton Center for Medical Breakthroughs in 2025; both names remain in circulation."
+    ]
+  },
+
+  "confidence_scale": {
+    "verified": "Stated directly by an official Penn Medicine / Penn Facilities wayfinding or directory document.",
+    "reported": "Stated by an official Penn source that is undated or plausibly stale.",
+    "inferred": "Derived by reasoning across sources (e.g. room number prefix -> floor).",
+    "unverified": "Plausible but unconfirmed; flagged in open_questions."
+  },
+
+  "nodes": [
+    {
+      "id": "campus.west_philadelphia",
+      "type": "campus",
+      "name": "Penn Medicine West Philadelphia campus",
+      "confidence": "verified"
+    },
+    {
+      "id": "bldg.hup_main",
+      "type": "building_complex",
+      "parent": "campus.west_philadelphia",
+      "name": "HUP Main",
+      "aliases": ["HUP", "3400 Spruce", "the old hospital"],
+      "address": "3400 Spruce St, Philadelphia PA 19104",
+      "has_inpatient_beds": true,
+      "note": "Not one building but 11+ interconnected wings sharing a single street address and continuous internal circulation. Floor numbers are shared across wings; room number prefix encodes floor.",
+      "confidence": "verified"
+    },
+
+    {
+      "id": "wing.founders",
+      "type": "wing",
+      "parent": "bldg.hup_main",
+      "name": "Founders Pavilion",
+      "built": 1987,
+      "floor_span": "1-14",
+      "has_inpatient_beds": true,
+      "note": "No 13th floor in the room-number series (5xx, 8xx, 9xx, 10xx, 11xx, 12xx, 14xx). Also holds cath lab, EP lab, pathology, coagulation lab, ORs, and the main cafeteria on 2.",
+      "confidence": "verified"
+    },
+    {
+      "id": "wing.silverstein",
+      "type": "wing",
+      "parent": "bldg.hup_main",
+      "name": "Silverstein Pavilion",
+      "built": 1978,
+      "floor_span": "1-12",
+      "has_inpatient_beds": true,
+      "note": "Former ED entrance at street level (ED relocated to the Pavilion in 2021). Holds the Intensive Care Nursery, antenatal testing, MFM, obstetrical ultrasound, genetic counseling.",
+      "confidence": "verified"
+    },
+    {
+      "id": "wing.rhoads",
+      "type": "wing",
+      "parent": "bldg.hup_main",
+      "name": "Jonathan Evans Rhoads Pavilion",
+      "built": 1995,
+      "floor_span": "G-7",
+      "has_inpatient_beds": true,
+      "note": "Entrance off Hamilton Walk. Own room-number scheme (2001-7026 = floor.room). HEPA-filtered onc floor by original design. MRI in basement. Inpatient echo.",
+      "confidence": "verified"
+    },
+    {
+      "id": "wing.ravdin",
+      "type": "wing",
+      "parent": "bldg.hup_main",
+      "name": "Ravdin Institute",
+      "built": 1963,
+      "floor_span": "G-9",
+      "has_inpatient_beds": true,
+      "note": "Main pedestrian entrance on 34th St; valet. Labor and delivery, second stage recovery, pre-op registration, neurodiagnostic lab, apheresis and infusion, occupational and travel medicine. Ravdin Courtyard addition 1973.",
+      "confidence": "verified"
+    },
+    {
+      "id": "wing.dulles",
+      "type": "wing",
+      "parent": "bldg.hup_main",
+      "name": "Dulles-Agnew",
+      "built": 1941,
+      "floor_span": "G-6",
+      "has_inpatient_beds": true,
+      "note": "Only floor 6 carries patient rooms (650-671). Otherwise radiology and the surgical family lounge.",
+      "confidence": "verified"
+    },
+    {
+      "id": "wing.gates",
+      "type": "wing",
+      "parent": "bldg.hup_main",
+      "name": "Gates Memorial",
+      "built": 1953,
+      "floor_span": "G-11",
+      "has_inpatient_beds": false,
+      "note": "Spans 11 floors but appears in NO patient-room range. Spruce St lobby entrance. Dickens Center for Women's Health, sleep medicine, phototherapy.",
+      "confidence": "verified"
+    },
+    {
+      "id": "wing.maloney",
+      "type": "wing",
+      "parent": "bldg.hup_main",
+      "name": "Maloney Building",
+      "built": 1929,
+      "has_inpatient_beds": false,
+      "note": "Clinical offices and clinics; no inpatient beds (wayfinding directory). Modeled for topological completeness only - office occupants are not tracked.",
+      "confidence": "reported"
+    },
+    {
+      "id": "wing.white",
+      "type": "wing",
+      "parent": "bldg.hup_main",
+      "name": "White Memorial",
+      "built": 1922,
+      "has_inpatient_beds": false,
+      "confidence": "inferred"
+    },
+    {
+      "id": "bldg.pavilion",
+      "type": "building",
+      "parent": "campus.west_philadelphia",
+      "name": "The Clifton Center for Medical Breakthroughs",
+      "short_name": "Clifton",
+      "aliases": ["The Pavilion", "HUP Pavilion"],
+      "opened": "2021-10-30",
+      "renamed": 2025,
+      "address": "3400 Civic Center Blvd (across 34th St from HUP Main)",
+      "stories": 17,
+      "floor_span": "G-17",
+      "private_patient_rooms": 504,
+      "operating_rooms": 47,
+      "has_inpatient_beds": true,
+      "wing_scheme": {
+        "city": "rooms 1-12 and 61-72 (city-facing end)",
+        "center": "rooms 13-24 and 49-60 (center)",
+        "campus": "rooms 25-48 (campus-facing end)"
+      },
+      "elevator_banks": {
+        "A": "rooms 25-60",
+        "B": "rooms 1-24 and 61-72"
+      },
+      "note": "floor_span G-17 from the verified floor nodes (Ground lobby node + numbering that reaches 15-17); with 13 modeled as skipped this is exactly 17 stories, matching both the stated story count and OSM building:levels=17.",
+      "confidence": "verified"
+    },
+    {
+      "id": "bldg.pcam",
+      "type": "building",
+      "parent": "campus.west_philadelphia",
+      "name": "Perelman Center for Advanced Medicine",
+      "short_name": "PCAM",
+      "aliases": ["PCAM"],
+      "has_inpatient_beds": "edge_case",
+      "note": "Nominally all-outpatient (Abramson Cancer Center, Roberts Proton Therapy Center, specialty clinics), BUT the CHPS inpatient research unit (Center for Human Phenomic Science) occupies overnight research beds here. Any query of the form 'which HUP buildings hold patients overnight' has to include it.",
+      "confidence": "verified"
+    },
+    {
+      "id": "floor.hup_main.G",
+      "type": "floor",
+      "parent": "bldg.hup_main",
+      "level": "Ground",
+      "wings_present": ["gates", "dulles", "ravdin", "rhoads", "silverstein", "founders", "maloney", "white"],
+      "has_patient_rooms": false,
+      "note": "The ground story is continuous under the whole complex: the Connector directory prints a G span only for gates/dulles/ravdin/rhoads, but it labels both the Main Entrance (34th St, Ravdin side) and the Spruce St entrance 'Ground Floor' and the Connector spine 'FIRST FLOOR' — one story above grade. Numbered floors are shared/aligned across wings (see floor_continuity edges), so Silverstein/Founders '1' sits atop a ground story the directory simply doesn't list destinations for (the pre-2021 ED entrance was at Silverstein street level). silverstein/founders/maloney/white membership is inferred; the four G-span wings are verified.",
+      "confidence": "verified"
+    },
+    {
+      "id": "floor.hup_main.1",
+      "type": "floor",
+      "parent": "bldg.hup_main",
+      "level": 1,
+      "has_patient_rooms": false,
+      "contents": ["Admissions", "Cashier", "CHPS Inpatient access", "Family Caregiver Center", "Gift Shop", "Hospital Pharmacy", "Interfaith Chapel", "Medical Records", "Patient and Guest Relations", "PEACE / Family Planning", "PT/OT/Speech", "Urogynecology"],
+      "note": "This is the Connector level - the horizontal spine tying HUP Main to PCAM and the Pavilion.",
+      "confidence": "verified"
+    },
+    {
+      "id": "floor.hup_main.2",
+      "type": "floor",
+      "parent": "bldg.hup_main",
+      "level": 2,
+      "has_patient_rooms": false,
+      "contents": ["Main cafeteria (Founders 2)", "Coffee cart (Founders 2)", "Labor and Delivery (Ravdin, approximate level)"],
+      "confidence": "reported"
+    },
+    {
+      "id": "floor.hup_main.5",
+      "type": "floor",
+      "parent": "bldg.hup_main",
+      "level": 5,
+      "has_patient_rooms": true,
+      "room_ranges": [{"range": "560-591", "core": "Founders"}],
+      "contents": ["Surgical Intensive Care Unit waiting area (Founders 5, per the March-2022 wayfinding PDF)", "Penn Hospital Medicine offices (Maloney 5)"],
+      "note": "EP-23 (2026-08-13): the modeled 24-bed SICU sits on Rhoads 5 (rooms 5001-5024, verified); the Founders-5 attribution is now read as the waiting-area/teaching-room side of the same floor plate. The former 'Founders 5 — SICU' roster entry is retired to archive/ep23_roster_rulings.json.",
+      "confidence": "verified"
+    },
+    {
+      "id": "floor.hup_main.6",
+      "type": "floor",
+      "parent": "bldg.hup_main",
+      "level": 6,
+      "has_patient_rooms": true,
+      "room_ranges": [
+        {"range": "630-648", "core": "Ravdin"},
+        {"range": "650-671", "core": "Dulles"}
+      ],
+      "units_reported": ["Ravdin 6 - Thoracic and Cardiac Surgery (pre-2021)", "Dulles 6 - Medical Oncology (pre-2021)"],
+      "confidence": "verified"
+    },
+    {
+      "id": "floor.hup_main.7",
+      "type": "floor",
+      "parent": "bldg.hup_main",
+      "level": 7,
+      "has_patient_rooms": true,
+      "room_ranges": [{"range": "701-722", "core": "Silverstein"}],
+      "confidence": "verified"
+    },
+    {
+      "id": "floor.hup_main.8",
+      "type": "floor",
+      "parent": "bldg.hup_main",
+      "level": 8,
+      "has_patient_rooms": true,
+      "room_ranges": [
+        {"range": "801-826", "core": "Silverstein"},
+        {"range": "875-886", "core": "Founders"}
+      ],
+      "units_reported": ["Founders 8 - MICU (opened March 2023, transferring from HUP Cedar MOB 3; EP-23, 2026-08-13)"],
+      "confidence": "verified"
+    },
+    {
+      "id": "floor.hup_main.9",
+      "type": "floor",
+      "parent": "bldg.hup_main",
+      "level": 9,
+      "has_patient_rooms": true,
+      "room_ranges": [
+        {"range": "901-930, 951-955", "core": "Silverstein"},
+        {"range": "931-949, 956-958", "core": "Ravdin"},
+        {"range": "960-983", "core": "Founders"}
+      ],
+      "units_reported": ["Silverstein 9 / Ravdin 9 - Pulmonary + GI Medicine + General Medicine (combined unit, post-Pavilion)", "Silverstein 9 - Neuroscience (pre-2021)", "Ravdin 9 - Urological, Head and Neck Surgery (pre-2021)", "Founders 9 - MICU (until the March-2023 Founders 8 opening per EP-23 evidence — current use of 960-983 unknown, roster entry retired)"],
+      "note": "Three separate elevator cores serve one floor level here - the densest interlock in the building and the classic wayfinding failure point.",
+      "confidence": "verified"
+    },
+    {
+      "id": "floor.hup_main.10",
+      "type": "floor",
+      "parent": "bldg.hup_main",
+      "level": 10,
+      "has_patient_rooms": true,
+      "room_ranges": [
+        {"range": "1001-1030", "core": "Silverstein"},
+        {"range": "1035-1056", "core": "Rhoads"},
+        {"range": "1060-1084", "core": "Founders"}
+      ],
+      "units_reported": ["Founders 10 - Advanced Medicine (post-Pavilion)", "Silverstein 10 - Cardiac Surgery (pre-2021)"],
+      "anomaly": "The 1035-1056 range is assigned to the Rhoads elevator, yet the Rhoads wing is documented as spanning only G-7. EP-23 ruling (owner, 2026-08-13): a directory artifact — Penn's own March-2022 wayfinding PDF labels Rhoads 'G-7' in the same document; the line is unchanged since at least an Oct-2019 Wayback capture; and no unit above Rhoads 7 appears in any posting, placement list, or award 2019-2026. The modeled unit and the contested floor-continuity edge are retired to archive/ep23_roster_rulings.json; the range is kept in this transcription because the directory really prints it.",
+      "confidence": "verified"
+    },
+    {
+      "id": "floor.hup_main.11",
+      "type": "floor",
+      "parent": "bldg.hup_main",
+      "level": 11,
+      "has_patient_rooms": true,
+      "room_ranges": [
+        {"range": "1101-1130", "core": "Silverstein"},
+        {"range": "1160-1186", "core": "Founders"}
+      ],
+      "units_reported": ["Silverstein 11 - General Medicine / Pulmonary / Infectious Diseases (pre-2021)"],
+      "confidence": "verified"
+    },
+    {
+      "id": "floor.hup_main.12",
+      "type": "floor",
+      "parent": "bldg.hup_main",
+      "level": 12,
+      "has_patient_rooms": true,
+      "room_ranges": [
+        {"range": "1201-1230", "core": "Silverstein"},
+        {"range": "1260-1289", "core": "Founders"}
+      ],
+      "units_reported": ["Silverstein 12 - GI Surgery / General Medicine", "Founders 12 - Medical Oncology or General Medicine (sources conflict)"],
+      "note": "Silverstein terminates here. Above level 12, Founders is the only HUP Main tower with beds.",
+      "confidence": "verified"
+    },
+    {
+      "id": "floor.hup_main.14",
+      "type": "floor",
+      "parent": "bldg.hup_main",
+      "level": 14,
+      "has_patient_rooms": true,
+      "room_ranges": [{"range": "1460-1489", "core": "Founders"}],
+      "units_reported": ["Founders 14 - General Medicine"],
+      "note": "There is no level 13 in the HUP Main room-number series.",
+      "confidence": "verified"
+    },
+
+    {
+      "id": "floor.rhoads.2", "type": "floor", "parent": "wing.rhoads", "level": 2, "has_patient_rooms": true, "room_ranges": [{"range": "2001-2022", "core": "Rhoads"}], "confidence": "verified"
+    },
+    {
+      "id": "floor.rhoads.3", "type": "floor", "parent": "wing.rhoads", "level": 3, "has_patient_rooms": true, "room_ranges": [{"range": "3001-3026", "core": "Rhoads"}], "units_reported": ["Hematologic Oncology (pre-2021; liquid onc has since moved to Pavilion 14)"], "confidence": "verified"
+    },
+    {
+      "id": "floor.rhoads.4", "type": "floor", "parent": "wing.rhoads", "level": 4, "has_patient_rooms": true, "room_ranges": [{"range": "4001-4026", "core": "Rhoads"}], "units_reported": ["Rhoads 4 - GI / Bariatric Surgery (post-Pavilion)", "Bariatric and Transplant Surgery (pre-2021)"], "confidence": "verified"
+    },
+    {
+      "id": "floor.rhoads.5", "type": "floor", "parent": "wing.rhoads", "level": 5, "has_patient_rooms": true, "room_ranges": [{"range": "5001-5024", "core": "Rhoads"}], "confidence": "verified"
+    },
+    {
+      "id": "floor.rhoads.6", "type": "floor", "parent": "wing.rhoads", "level": 6, "has_patient_rooms": true, "room_ranges": [{"range": "6001-6026", "core": "Rhoads"}], "units_reported": ["Hematologic Oncology (pre-2021)"], "confidence": "verified"
+    },
+    {
+      "id": "floor.rhoads.7", "type": "floor", "parent": "wing.rhoads", "level": 7, "has_patient_rooms": true, "room_ranges": [{"range": "7001-7026", "core": "Rhoads"}], "units_reported": ["Rhoads 7 - Urology and Colorectal Surgery / General Surgery (post-Pavilion)", "Hematologic Oncology / stem cell transplant (pre-2021)"], "confidence": "verified"
+    },
+
+    {
+      "id": "floor.pavilion.G", "type": "floor", "parent": "bldg.pavilion", "level": "Ground", "has_patient_rooms": false, "contents": ["North lobby", "Bower Cafe", "ATMs", "vending"], "confidence": "verified"
+    },
+    {
+      "id": "floor.pavilion.1", "type": "floor", "parent": "bldg.pavilion", "level": 1, "has_patient_rooms": false, "contents": ["Emergency Department (lower of two ED floors)", "Green Family Commons cafeteria", "Root and Sprig", "Templeton Family Caregiver Center"], "confidence": "verified"
+    },
+    {
+      "id": "floor.pavilion.2", "type": "floor", "parent": "bldg.pavilion", "level": 2, "has_patient_rooms": false, "contents": ["Emergency Department (upper floor)"], "note": "ED beds are treatment spaces, not licensed inpatient rooms - but they board admitted patients, so include them if your question is 'where do admitted patients physically sleep'.", "confidence": "inferred"
+    },
+    {
+      "id": "floor.pavilion.3_6", "type": "floor_group", "parent": "bldg.pavilion", "level": "3-6", "has_patient_rooms": false, "contents": ["Interventional platform: 47 operating rooms, procedural suites"], "confidence": "inferred"
+    },
+    {
+      "id": "floor.pavilion.7", "type": "floor", "parent": "bldg.pavilion", "level": 7, "has_patient_rooms": true, "confidence": "verified"
+    },
+    {
+      "id": "floor.pavilion.8", "type": "floor", "parent": "bldg.pavilion", "level": 8, "has_patient_rooms": true, "units_reported": ["8 Center - Cardiac Medical/Surgical", "8 City - Cardiac Medical/Surgical"], "confidence": "reported"
+    },
+    {
+      "id": "floor.pavilion.9", "type": "floor", "parent": "bldg.pavilion", "level": 9, "has_patient_rooms": true, "units_reported": ["9 Campus - Cardiac Surgery", "9 Center - Cardiac Surgery"], "note": "Heart and Vascular ICU with an embedded simulation center on the same floor.", "confidence": "reported"
+    },
+    {
+      "id": "floor.pavilion.10", "type": "floor", "parent": "bldg.pavilion", "level": 10, "has_patient_rooms": true, "units_reported": ["10 Campus - Neurosurgery", "10 Center - Medical/Surgical Neurology"], "note": "12-bed Epilepsy Monitoring Unit with dedicated control room.", "confidence": "reported"
+    },
+    {
+      "id": "floor.pavilion.11", "type": "floor", "parent": "bldg.pavilion", "level": 11, "has_patient_rooms": true, "units_reported": ["11 City - Transplant Surgery", "11 Center - Transplant ICU"], "note": "Abdominal transplant ICU and floor co-located by design.", "confidence": "reported"
+    },
+    {
+      "id": "floor.pavilion.12", "type": "floor", "parent": "bldg.pavilion", "level": 12, "has_patient_rooms": true, "units_reported": ["12 Campus - Solid Oncology"], "confidence": "reported"
+    },
+    {
+      "id": "floor.pavilion.13", "type": "floor", "parent": "bldg.pavilion", "level": 13, "has_patient_rooms": true, "note": "Implied by the stated 7-14 patient-room span; no public unit assignment found. Unlike HUP Main, the Pavilion appears not to skip 13.", "confidence": "inferred"
+    },
+    {
+      "id": "floor.pavilion.14", "type": "floor", "parent": "bldg.pavilion", "level": 14, "has_patient_rooms": true, "units_reported": ["14 Campus - Liquid Oncology", "14 Center - Liquid Oncology"], "confidence": "reported"
+    },
+    {
+      "id": "floor.pavilion.15_17", "type": "floor_group", "parent": "bldg.pavilion", "level": "15-17", "has_patient_rooms": false, "note": "Building is 17 stories but patient rooms stop at 14; upper levels are mechanical/shell space held for future fit-out.", "confidence": "unverified"
+    },
+
+    {
+      "id": "unit.pcam.chps", "type": "unit", "parent": "bldg.pcam", "name": "CHPS Inpatient (Center for Human Phenomic Science)", "bed_type": "research inpatient", "access": "signposted from the HUP Main Connector, first floor", "confidence": "verified"
+    },
+    {
+      "id": "unit.silverstein.icn", "type": "unit", "parent": "wing.silverstein", "name": "Intensive Care Nursery", "bed_type": "neonatal ICU", "confidence": "verified"
+    },
+    {
+      "id": "unit.founders.sicu", "type": "unit", "parent": "wing.founders", "level": 5, "name": "Surgical Intensive Care Unit (historical Founders-5 attribution)", "note": "Original 1987 design placed SICU rooms on a circular plane for single-vantage visibility. EP-23 (2026-08-13): the modeled SICU is the 24-bed Rhoads 5 unit; '5 Founders SICU' survives in fellowship materials as a teaching-room name, so this node is kept as historical record.", "confidence": "verified"
+    },
+    {
+      "id": "unit.ravdin.ld", "type": "unit", "parent": "wing.ravdin", "name": "Labor and Delivery", "confidence": "verified"
+    }
+  ],
+
+  "edges": [
+    {"from": "wing.silverstein", "to": "bldg.pavilion", "type": "bridge", "layout": "bridge.silverstein_clifton", "level": 3, "name": "Silverstein–Clifton skybridge", "note": "Elevated over 34th St; patients were physically wheeled across on 2021-10-30 during the 310-patient migration. Deck geometry surveyed (KML hand-mapping, 2026-08); level ~3 is inferred (KML LookAt altitude 12.0 m corroborates) — see open_questions.", "confidence": "verified"},
+    {"from": "bldg.pavilion", "to": "bldg.pcam", "type": "bridge", "layout": "bridge.clifton_pcam_1", "level": 2, "name": "Clifton–Perelman skybridge #1", "note": "Northern of two parallel decks. Deck geometry surveyed (KML hand-mapping, 2026-08); level ~2 is inferred — see open_questions.", "confidence": "verified"},
+    {"from": "bldg.pavilion", "to": "bldg.pcam", "type": "bridge", "layout": "bridge.clifton_pcam_2", "level": 2, "name": "Clifton–Perelman skybridge #2", "note": "Southern of two parallel decks. Deck geometry surveyed (KML hand-mapping, 2026-08); level ~2 is inferred — see open_questions.", "confidence": "verified"},
+    {"from": "wing.silverstein", "to": "bldg.pcam", "type": "bridge", "name": "Dietz and Watson Bridge", "traversable": "indoor, weather-protected", "note": "Directory-verified edge with no KML geometry. The HUP-Main-side anchor at Silverstein (nearest east-block frontage to PCAM; Ravdin east frontage also plausible) is an alignment guess — see open_questions.", "confidence": "verified"},
+    {"from": "wing.silverstein", "to": "bldg.pcam", "type": "connector_corridor", "level": 1, "name": "The Connector", "note": "Ground/first-floor spine; also the location of admissions, chapel, pharmacy, medical records. The spine threads several HUP Main wings; the Silverstein anchor is the east-block frontage nearest PCAM.", "confidence": "verified"},
+    {"from": "bldg.pavilion", "to": "bldg.pcam", "type": "connector_corridor", "note": "The Connector path is documented as linking all three: HUP Main, Pavilion, PCAM.", "confidence": "verified"},
+    {"from": "wing.silverstein", "to": "bldg.pavilion", "type": "tunnel", "note": "Narrative sources describe 'indoor bridges and tunnels'; exact level and alignment unpublished. Wing anchor mirrors the skybridge above (Silverstein is the wing facing the Pavilion across 34th St).", "confidence": "unverified"},
+
+    {"from": "wing.ravdin", "to": "wing.silverstein", "type": "structural_adjacency", "note": "Both built on the former Nurses Home footprint; contiguous on levels 9 and below.", "confidence": "verified"},
+    {"from": "wing.silverstein", "to": "wing.founders", "type": "floor_continuity", "levels": [8, 9, 10, 11, 12], "note": "Same numbered floors, different room-number blocks, separate elevator cores. You can walk between them without changing level.", "confidence": "verified"},
+    {"from": "wing.ravdin", "to": "wing.founders", "type": "floor_continuity", "levels": [9], "confidence": "verified"},
+    {"from": "wing.ravdin", "to": "wing.dulles", "type": "floor_continuity", "levels": [6], "confidence": "verified"}
+  ],
+
+  "elevator_cores": [
+    {"core": "Founders", "serves_patient_floors": [5, 8, 9, 10, 11, 12, 14]},
+    {"core": "Silverstein", "serves_patient_floors": [7, 8, 9, 10, 11, 12]},
+    {"core": "Ravdin", "serves_patient_floors": [6, 9]},
+    {"core": "Dulles", "serves_patient_floors": [6]},
+    {"core": "Rhoads", "serves_patient_floors": [2, 3, 4, 5, 6, 7], "note": "The directory also rides 1035-1056 ('floor 10') on this core — ruled a directory artifact in EP-23 (2026-08-13, owner); see the level-10 anomaly entry and archive/ep23_roster_rulings.json."},
+    {"core": "Gates", "serves_patient_floors": [], "note": "11 floors, zero patient rooms"},
+    {"core": "Pavilion Bank A", "serves_patient_floors": [7, 8, 9, 10, 11, 12, 13, 14], "rooms": "25-60"},
+    {"core": "Pavilion Bank B", "serves_patient_floors": [7, 8, 9, 10, 11, 12, 13, 14], "rooms": "1-24, 61-72"}
+  ],
+
+  "derived_views": {
+    "buildings_with_patient_rooms": ["wing.founders", "wing.silverstein", "wing.rhoads", "wing.ravdin", "wing.dulles", "bldg.pavilion", "bldg.pcam (research beds only)"],
+    "buildings_without_patient_rooms": ["wing.gates", "wing.maloney", "wing.white"],
+    "boarding_capable_non_inpatient": ["floor.pavilion.1", "floor.pavilion.2"]
+  },
+
+  "open_questions": [
+    "Dietz & Watson Bridge alignment: which HUP Main wing/frontage the bridge actually lands on (modeled at wing.silverstein as the nearest east-block frontage to PCAM; Ravdin east frontage also plausible), and at what level it crosses.",
+    "Bridge levels are estimates tagged inferred, pending on-the-ground verification: Silverstein–Clifton ~level 3 (KML LookAt altitude 12.0 m corroborates); both Clifton–Perelman skybridges ~level 2.",
+    "Level-10 anomaly: rooms 1035-1056 are mapped to the Rhoads elevator although Rhoads is documented as G-7. EP-23 ruling (owner, 2026-08-13): treated as a directory artifact — unit and contested edge retired to archive/ep23_roster_rulings.json; the ruling stands unless an on-the-ground check (current floor plan, or a charge nurse on Founders 10) contradicts it.",
+    "Pavilion levels 15-17: shelled, mechanical, or occupied? Public sources describe 17 stories but only floors 7-14 as patient rooms.",
+    "Whether Maloney or White retain any licensed beds - no source affirms beds, but no source explicitly denies them either. The absence-of-evidence here is from a wayfinding document, which lists only rooms a visitor might be sent to.",
+    "Exact level and alignment of the HUP Main to Pavilion tunnel(s).",
+    "Whether the pre-2021 unit assignments in this file survive anywhere - most were reshuffled and the Penn Nursing guide has not been redated."
+  ]
+}

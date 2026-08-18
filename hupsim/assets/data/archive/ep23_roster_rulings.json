@@ -1,0 +1,238 @@
+{
+  "$schema_note": "EP-23 roster retirements (owner service-line ruling session, 2026-08-13). The EP-8 mapping left 11 units flagged needs_owner_ruling; after a targeted OSINT sweep (multi-agent web hunt + owner hand-searches of bot-blocked sources) the owner ruled every one. Six units were RETIRED from the modeled roster and are archived here VERBATIM, provenance intact, per the EP-1 archive pattern (archived, not deleted; compiler never reads this file; absence pinned by test ep23_retired_units_are_absent). Retirement reasons ride on each entry's archive_note. Their service_lines.json assignments and the contested Rhoads level-10 topology edge are archived alongside (same-commit rule: a stale assignment trips the no-stale-warnings pin). Reversal is a copy-paste back plus re-pinning the count tests.",
+  "archived": "2026-08-13",
+  "reason": "EP-23 owner rulings: SICU ruled onto Rhoads 5 (Founders 5 entry superseded), MICU ruled onto Founders 8 (Founders 9 vacated), Rhoads 2 uncorroborated as a current inpatient unit, Rhoads 10 ruled a wayfinding-directory artifact, Pavilion 8 Campus and 14 City ruled not-distinct-inpatient-units (no evidence in 5 years of postings/placement lists while every sibling wing appears).",
+  "units": [
+    {
+      "id": "unit.founders.5",
+      "name": "Founders 5 — SICU",
+      "service": "Surgical Critical Care",
+      "unit_type": "icu",
+      "building": "wing.founders",
+      "level": 5,
+      "elevator_core": "Founders",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "560-591",
+        "kind": "icu_bay"
+      },
+      "confidence": "reported",
+      "era": "timeless",
+      "source": "HUP wayfinding directory (rooms 560-591 = 32); longstanding SICU location",
+      "note": "Original 1987 design placed SICU rooms on a circular plane for single-vantage visibility.",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "ICU bays are continuously monitored - telemetry-capable throughout. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 2,
+        "confidence": "inferred",
+        "note": "ICU standard 2:1 (1:1 for ECMO/CRRT-level patients - not modeled)."
+      },
+      "archive_note": "EP-23 (owner, 2026-08-13): superseded by the verified 24-bed Rhoads 5 SICU (Gold Beacon requisition text; DAISY 2019 'Rhoads 5 SICU Team'; fellowship 'Location: Rhoads 5 and 11 Center'). Evidence for a CURRENT Founders 5 ICU was thin — '5 Founders SICU' survives only as a teaching-room name, and the March-2022 wayfinding PDF places the SICU WAITING AREA (not bays) on Founders 5. Owner: 'remove the current instance of an ICU (SICU or otherwise) on founders 5. I can always go back later.'"
+    },
+    {
+      "id": "unit.founders.9",
+      "name": "Founders 9 — MICU",
+      "service": "Medical Critical Care",
+      "unit_type": "icu",
+      "building": "wing.founders",
+      "level": 9,
+      "elevator_core": "Founders",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "960-983",
+        "kind": "icu_bay"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "med.upenn.edu/HUPMICU directions — 'MICU… 9th floor of the Founders building'; range 960-983 = 24 rooms = the reported 24 beds",
+      "note": "The MICU stayed in HUP Main when the Pavilion opened — it did NOT move.",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "ICU bays are continuously monitored - telemetry-capable throughout. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 2,
+        "confidence": "inferred",
+        "note": "ICU standard 2:1 (1:1 for ECMO/CRRT-level patients - not modeled)."
+      },
+      "archive_note": "EP-23 (owner, 2026-08-13): the MICU opened on Founders 8 in March 2023 after transferring from HUP Cedar – MOB 3 (instagram.com/p/C5uJNKHNuWW, @hupnursing 2024-04-13; careers req 17920408, posted 2026-06-24, names Founders 8). The med.upenn.edu directions source is stale. Current use of rooms 960-983 unknown — owner: Founders 9 'may not have rooms/facilities directly within the hospitalist scope'; retired rather than guessed."
+    },
+    {
+      "id": "unit.rhoads.2",
+      "name": "Rhoads 2",
+      "service": "Unassigned (no public source)",
+      "unit_type": "med_surg",
+      "building": "wing.rhoads",
+      "level": 2,
+      "elevator_core": "Rhoads",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "2001-2022",
+        "kind": "inpatient"
+      },
+      "confidence": "unverified",
+      "era": "unknown",
+      "source": "Room range verified (wayfinding); no unit-naming source found (2026-08 search)",
+      "capabilities": {
+        "telemetry": "none",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Unit identity unknown - conservatively not telemetry-capable. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 5,
+        "confidence": "inferred",
+        "note": "Generic med-surg default pending identity ruling."
+      },
+      "archive_note": "EP-23 (owner, 2026-08-13): 'remove for now, I can't find additional corroborating information at this time.' The 2026-08 sweep found the live directory still lists rooms 2001-2022 and a 2017 'Rhoads 2 Wins Victoria Rich Award' headline (unit existed pre-Pavilion), but zero 2021-2026 service sources while Rhoads 3/4/6/7 all repost as surgical units. Restore + rule a line if a current source appears."
+    },
+    {
+      "id": "unit.rhoads.10",
+      "name": "Rhoads 10 (anomaly)",
+      "service": "Unassigned (no public source)",
+      "unit_type": "med_surg",
+      "building": "wing.rhoads",
+      "level": 10,
+      "elevator_core": "Rhoads",
+      "rooms": {
+        "source": "ranges",
+        "ranges": "1035-1056",
+        "kind": "inpatient"
+      },
+      "confidence": "unverified",
+      "era": "unknown",
+      "source": "HUP wayfinding directory maps 1035-1056 to the Rhoads elevator",
+      "note": "LEVEL-10 ANOMALY: the Rhoads wing is documented as G-7, yet these floor-10 rooms ride the Rhoads core. Either the core continues into adjacent structure or the directory is internally inconsistent.",
+      "capabilities": {
+        "telemetry": "none",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Unit identity unknown - conservatively not telemetry-capable. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 5,
+        "confidence": "inferred",
+        "note": "Generic med-surg default pending identity ruling."
+      },
+      "archive_note": "EP-23 (owner, 2026-08-13): ruled a wayfinding-directory artifact ('a glitch due to room-numbering convention-breaking') and removed together with the synthesized floating floor-10 slab. Evidence: Penn's own March-2022 PDF labels Rhoads 'G-7' in the same document that prints the 1035-1056 line; the line is unchanged since at least an Oct-2019 Wayback capture; no unit above Rhoads 7 in any posting, placement list, or award 2019-2026; no structure above Rhoads 7 shares its core. Reverses only on an on-the-ground contradiction."
+    },
+    {
+      "id": "unit.pavilion.8.campus",
+      "name": "Pavilion 8 Campus",
+      "service": "Unassigned (no public source)",
+      "unit_type": "med_surg",
+      "building": "bldg.pavilion",
+      "level": 8,
+      "elevator_core": "Pavilion Bank A",
+      "rooms": {
+        "source": "pavilion_wing",
+        "floor": 8,
+        "wing": "campus",
+        "kind": "inpatient"
+      },
+      "confidence": "unverified",
+      "era": "post_pavilion",
+      "source": "Unit identity not publicly documented",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Pavilion rooms are acuity-adaptable by design (all-private, ICU-convertible) - telemetry-capable throughout, inferred. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 5,
+        "confidence": "inferred",
+        "note": "Generic med-surg default pending identity ruling."
+      },
+      "archive_note": "EP-23 (owner, 2026-08-13): 'assume it is not used for non-operative inpatient activities and remove it as a unit; it likely feeds its unstable patients downstairs to 7's ICU or elsewhere as overflow.' Corroborating negative: '8 Campus' appears in NO posting or placement list across 5 years while every sibling floor-8/9/10/12/14 wing does, and cardiology's Campus-wing overflow pairs 8 Center with 11 Campus, not 8 Campus."
+    },
+    {
+      "id": "unit.pavilion.14.city",
+      "name": "Pavilion 14 City",
+      "service": "Unassigned (no public source)",
+      "unit_type": "med_surg",
+      "building": "bldg.pavilion",
+      "level": 14,
+      "elevator_core": "Pavilion Bank B",
+      "rooms": {
+        "source": "pavilion_wing",
+        "floor": 14,
+        "wing": "city",
+        "kind": "inpatient"
+      },
+      "confidence": "unverified",
+      "era": "post_pavilion",
+      "source": "Unit identity not publicly documented",
+      "capabilities": {
+        "telemetry": "all",
+        "negative_pressure_first_n": 2,
+        "confidence": "inferred",
+        "note": "Pavilion rooms are acuity-adaptable by design (all-private, ICU-convertible) - telemetry-capable throughout, inferred. Count inferred (1-2 airborne-isolation rooms per inpatient unit, typical HUP floor design); placement deterministic - the first N rooms in generation order. Correct per-unit as verified."
+      },
+      "staffing": {
+        "target_rn_ratio": 5,
+        "confidence": "inferred",
+        "note": "Generic med-surg default pending identity ruling."
+      },
+      "archive_note": "EP-23 (owner, 2026-08-13): removed — 'keep the two liquid oncology units on 14 campus and 14 center; there's no direct evidence that this floor has ICUs like 11 and 12… assume for now that pavilion 14 city may not have rooms/facilities directly within the hospitalist scope.' Corroborating negative: zero '14-city' slugs in the archived careers corpus vs real slugs for every other wing pattern; Penn staffs ~36-bed cross-wing units, so these rooms may roll into 14 Center's unit. A search-AI digest claiming '14 CITY - Liquid Oncology' on Coursicle could not be confirmed on the CAPTCHA-gated page and was treated as unverified."
+    }
+  ],
+  "service_line_assignments": [
+    {
+      "unit": "unit.founders.5",
+      "line": "line.critical_care",
+      "confidence": "verified",
+      "source": "service: 'Surgical Critical Care'",
+      "note": "General surgical ICU spanning surgical services — binned with the MICU in Critical Care rather than Surgery, per the general-vs-service-aligned ICU convention (see $schema_note)."
+    },
+    {
+      "unit": "unit.founders.9",
+      "line": "line.critical_care",
+      "confidence": "verified",
+      "source": "service: 'Medical Critical Care'",
+      "note": "The MICU — general medical ICU, binned with the SICU in Critical Care per the general-vs-service-aligned ICU convention."
+    },
+    {
+      "unit": "unit.rhoads.2",
+      "line": "line.other",
+      "confidence": "unverified",
+      "source": "service: 'Unassigned (no public source)'",
+      "needs_owner_ruling": true
+    },
+    {
+      "unit": "unit.rhoads.10",
+      "line": "line.other",
+      "confidence": "unverified",
+      "source": "service: 'Unassigned (no public source)'",
+      "needs_owner_ruling": true,
+      "note": "The level-10 anomaly unit — service identity AND physical existence are both open questions."
+    },
+    {
+      "unit": "unit.pavilion.8.campus",
+      "line": "line.other",
+      "confidence": "unverified",
+      "source": "service: 'Unassigned (no public source)'",
+      "needs_owner_ruling": true
+    },
+    {
+      "unit": "unit.pavilion.14.city",
+      "line": "line.other",
+      "confidence": "unverified",
+      "source": "service: 'Unassigned (no public source)'",
+      "needs_owner_ruling": true
+    }
+  ],
+  "topology_edges": [
+    {"from": "wing.rhoads", "to": "wing.founders", "type": "floor_continuity", "levels": [10], "note": "Contested - see the level-10 anomaly.", "confidence": "unverified", "archive_note": "EP-23 (2026-08-13): retired with unit.rhoads.10 — kept live under include_unverified it would manufacture a route node for a floor the model no longer has."}
+  ],
+  "relocated_prose": {
+    "hup_topology.floor.hup_main.5.contents": "Original entry read 'Surgical Intensive Care Unit (Founders 5)'; the live file now reads it as the SICU waiting area per the March-2022 wayfinding PDF, with the modeled SICU on Rhoads 5.",
+    "hup_topology.elevator_cores.rhoads": "Original serves_patient_floors was [2, 3, 4, 5, 6, 7, 10]; 10 dropped with the artifact ruling (the live entry keeps 2 because the directory really lists 2001-2022)."
+  }
+}

@@ -1,0 +1,18 @@
+[package]
+name = "hupsim-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[features]
+# Rayon-parallel matrix transforms — an architecture demonstration (1,115 rooms
+# don't need it; the pattern scales to health-system row counts). The default
+# build must stay dependency-lean: serde + serde_json + thiserror only.
+parallel = ["dep:rayon"]
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+rayon = { workspace = true, optional = true }

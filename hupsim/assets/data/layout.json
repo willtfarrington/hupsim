@@ -1,0 +1,342 @@
+{
+  "$schema_note": "3D massing layout. Local ENU meters (x=east, y=north) about origin 39.9490,-75.1925 (near 34th St & Convention Ave). Wing footprints are surveyed hand-traces (Google Earth Pro, owner, 2026-08) imported by the kml_import tool — see assets/data/kml_mapping.json and kml_import_report.md. Clifton (formerly labeled \"Pavilion\"; node id stays bldg.pavilion) and PCAM keep their verified OSM polygons (way/749302010, way/50033009); the HUP Main podium plate is derived from the union of the eight wing footprints by the podium_gen tool — see assets/data/podium_report.md. bridges[] holds skybridge deck polygons; the topology graph references them by id. levels counts total above-grade stories INCLUDING the shared street-level ground story every building models (the wayfinding directory prints a G span for only four wings, but street level is Ground complex-wide and the Connector is the first floor); the extruded podium plate is that ground story for the eight HUP Main wings. The eight wings share one 3.8 m story height: their numbered floors are continuous plates (verified floor_continuity edges), so per-wing heights would splay the same floor number to different elevations; renderers stack each floor at its labeled story (Ground = 0, floor N = N, 13-skippers compress above 13).",
+  "origin_lat": 39.949,
+  "origin_lon": -75.1925,
+  "buildings": [
+    {
+      "node": "wing.silverstein",
+      "footprint": {
+        "vertices": [
+          [-119.0, 47.3],
+          [-45.1, 34.7],
+          [-40.3, 63.6],
+          [-80.0, 69.8],
+          [-79.3, 75.0],
+          [-90.8, 76.8],
+          [-93.2, 60.8],
+          [-100.3, 61.9],
+          [-100.7, 58.9],
+          [-116.9, 61.4]
+        ]
+      },
+      "levels": 13,
+      "floor_height_m": 3.8,
+      "ground_elevation_m": 0.0,
+      "provenance": {
+        "confidence": "verified",
+        "source": "Google Earth Pro hand-mapping (owner), 2026-08",
+        "era": "timeless"
+      }
+    },
+    {
+      "node": "wing.ravdin",
+      "footprint": {
+        "vertices": [
+          [-29.1, 128.9],
+          [-53.6, 133.1],
+          [-64.8, 67.4],
+          [-40.3, 63.6]
+        ]
+      },
+      "levels": 10,
+      "floor_height_m": 3.8,
+      "ground_elevation_m": 0.0,
+      "provenance": {
+        "confidence": "verified",
+        "source": "Google Earth Pro hand-mapping (owner), 2026-08",
+        "era": "timeless"
+      }
+    },
+    {
+      "node": "wing.founders",
+      "footprint": {
+        "vertices": [
+          [-176.3, 88.7],
+          [-156.3, 85.3],
+          [-157.3, 78.5],
+          [-138.0, 75.4],
+          [-136.9, 82.1],
+          [-134.3, 81.6],
+          [-121.9, 161.5],
+          [-163.1, 168.5]
+        ]
+      },
+      "levels": 14,
+      "floor_height_m": 3.8,
+      "ground_elevation_m": 0.0,
+      "provenance": {
+        "confidence": "verified",
+        "source": "Google Earth Pro hand-mapping (owner), 2026-08",
+        "era": "timeless"
+      }
+    },
+    {
+      "node": "wing.gates",
+      "footprint": {
+        "vertices": [
+          [-200.6, 184.2],
+          [-202.7, 172.3],
+          [-196.0, 171.1],
+          [-195.6, 174.0],
+          [-107.2, 159.1],
+          [-107.8, 155.9],
+          [-101.7, 154.8],
+          [-99.5, 167.2]
+        ]
+      },
+      "levels": 12,
+      "floor_height_m": 3.8,
+      "ground_elevation_m": 0.0,
+      "provenance": {
+        "confidence": "verified",
+        "source": "Google Earth Pro hand-mapping (owner), 2026-08",
+        "era": "timeless"
+      }
+    },
+    {
+      "node": "wing.maloney",
+      "footprint": {
+        "vertices": [
+          [-200.6, 184.2],
+          [-233.0, 189.7],
+          [-242.2, 130.6],
+          [-224.2, 127.8],
+          [-223.3, 132.7],
+          [-224.7, 132.8],
+          [-224.1, 136.6],
+          [-225.5, 136.8],
+          [-222.8, 153.4],
+          [-206.4, 150.6]
+        ]
+      },
+      "levels": 10,
+      "floor_height_m": 3.8,
+      "ground_elevation_m": 0.0,
+      "provenance": {
+        "confidence": "verified",
+        "source": "Google Earth Pro hand-mapping (owner), 2026-08",
+        "era": "timeless"
+      }
+    },
+    {
+      "node": "wing.rhoads",
+      "footprint": {
+        "vertices": [
+          [-248.4, 90.6],
+          [-210.7, 84.7],
+          [-210.9, 83.2],
+          [-204.8, 82.2],
+          [-203.2, 92.6],
+          [-205.0, 92.9],
+          [-204.1, 98.4],
+          [-205.7, 98.6],
+          [-201.7, 124.4],
+          [-242.2, 130.6]
+        ]
+      },
+      "levels": 8,
+      "floor_height_m": 3.8,
+      "ground_elevation_m": 0.0,
+      "provenance": {
+        "confidence": "verified",
+        "source": "Google Earth Pro hand-mapping (owner), 2026-08",
+        "era": "timeless"
+      }
+    },
+    {
+      "node": "wing.dulles",
+      "footprint": {
+        "vertices": [
+          [-64.7, 138.0],
+          [-53.1, 136.4],
+          [-49.2, 158.7],
+          [-99.5, 167.2],
+          [-112.8, 90.1],
+          [-107.1, 89.1],
+          [-107.6, 86.0],
+          [-99.6, 84.7],
+          [-94.1, 116.6],
+          [-68.8, 111.8]
+        ]
+      },
+      "levels": 7,
+      "floor_height_m": 3.8,
+      "ground_elevation_m": 0.0,
+      "provenance": {
+        "confidence": "verified",
+        "source": "Google Earth Pro hand-mapping (owner), 2026-08",
+        "era": "timeless"
+      }
+    },
+    {
+      "node": "wing.white",
+      "footprint": {
+        "vertices": [
+          [-53.6, 133.1],
+          [-25.0, 128.2],
+          [-20.6, 154.0],
+          [-49.2, 158.7]
+        ]
+      },
+      "levels": 6,
+      "floor_height_m": 3.8,
+      "ground_elevation_m": 0.0,
+      "provenance": {
+        "confidence": "verified",
+        "source": "Google Earth Pro hand-mapping (owner), 2026-08",
+        "era": "timeless"
+      }
+    },
+    {
+      "node": "bldg.pavilion",
+      "footprint": {
+        "vertices": [
+          [140.3, -110.8],
+          [121.1, -115.2],
+          [120.8, -130.4],
+          [104.8, -133.9],
+          [76.4, -89.1],
+          [-14.7, -5.7],
+          [-12.8, 10.3],
+          [4.4, 14.4],
+          [53.0, -13.4],
+          [139.6, -93.9]
+        ]
+      },
+      "levels": 17,
+      "floor_height_m": 4.4,
+      "ground_elevation_m": 0.0,
+      "provenance": {
+        "confidence": "verified",
+        "source": "OSM way/749302010 (building=hospital, building:levels=17, addr 1 Convention Ave) via Overpass; patient rooms occupy 7-14, 13 likely skipped, 15-17 mechanical/shell",
+        "era": "timeless"
+      }
+    },
+    {
+      "node": "bldg.pcam",
+      "footprint": {
+        "vertices": [
+          [-33.6, -250.5],
+          [82.2, -182.3],
+          [17.2, -66.5],
+          [14.5, -67.8],
+          [9.7, -60.7],
+          [0.8, -65.4],
+          [-5.9, -90.5],
+          [26.3, -145.6],
+          [-12.1, -168.4],
+          [-34.6, -128.8],
+          [-59.5, -121.0],
+          [-97.6, -142.4]
+        ]
+      },
+      "levels": 16,
+      "floor_height_m": 4.4,
+      "ground_elevation_m": 0.0,
+      "provenance": {
+        "confidence": "verified",
+        "source": "OSM way/50033009 (building:levels=16, 3400 Civic Center Blvd) via Overpass; outpatient (Abramson Cancer Center, Roberts Proton Therapy) — no inpatient rooms modeled",
+        "era": "timeless"
+      }
+    }
+  ],
+  "ground_plates": [
+    {
+      "footprint": {
+        "vertices": [
+          [-248.3, 87.6],
+          [-205.5, 79.3],
+          [-195.3, 88.8],
+          [-184.5, 90.1],
+          [-166.0, 83.3],
+          [-158.3, 75.8],
+          [-126.8, 69.8],
+          [-121.0, 61.3],
+          [-121.8, 47.3],
+          [-119.8, 44.6],
+          [-44.3, 32.1],
+          [-42.0, 35.1],
+          [-28.0, 118.3],
+          [-22.0, 128.1],
+          [-17.8, 153.1],
+          [-21.0, 157.1],
+          [-233.8, 192.3],
+          [-236.0, 189.6],
+          [-251.3, 90.8]
+        ]
+      },
+      "label": "HUP Main podium — derived union of the eight wing footprints",
+      "extrude_m": 3.5,
+      "provenance": {
+        "confidence": "inferred",
+        "source": "podium_gen: union of the 8 surveyed wing.* footprints, +3 m buffer, 15 m morphological closing, 1.5 m simplify (see assets/data/podium_report.md)",
+        "era": "timeless",
+        "note": "one-story connective podium = the shared street-level Ground story; the wing towers sit fully inside the plate by construction and their numbered floors start above the rim"
+      }
+    }
+  ],
+  "bridges": [
+    {
+      "id": "bridge.clifton_pcam_1",
+      "from": "bldg.pavilion",
+      "to": "bldg.pcam",
+      "level": 2,
+      "deck_height_m": 8.0,
+      "vertices": [
+        [27.7, -81.5],
+        [29.2, -83.9],
+        [46.0, -62.5],
+        [43.9, -60.5]
+      ],
+      "provenance": {
+        "confidence": "inferred",
+        "source": "Deck outline: Google Earth Pro hand-mapping (owner), 2026-08",
+        "era": "timeless",
+        "note": "Level/deck height inferred: Silverstein↔Clifton ≈ L3 (KML LookAt altitude 12.0 m corroborates); Clifton↔Perelman ≈ L2"
+      }
+    },
+    {
+      "id": "bridge.clifton_pcam_2",
+      "from": "bldg.pavilion",
+      "to": "bldg.pcam",
+      "level": 2,
+      "deck_height_m": 8.0,
+      "vertices": [
+        [47.6, -114.5],
+        [74.6, -89.0],
+        [72.6, -87.2],
+        [46.2, -112.1]
+      ],
+      "provenance": {
+        "confidence": "inferred",
+        "source": "Deck outline: Google Earth Pro hand-mapping (owner), 2026-08",
+        "era": "timeless",
+        "note": "Level/deck height inferred: Silverstein↔Clifton ≈ L3 (KML LookAt altitude 12.0 m corroborates); Clifton↔Perelman ≈ L2"
+      }
+    },
+    {
+      "id": "bridge.silverstein_clifton",
+      "from": "wing.silverstein",
+      "to": "bldg.pavilion",
+      "level": 3,
+      "deck_height_m": 12.0,
+      "vertices": [
+        [-56.4, 36.5],
+        [-14.2, -1.6],
+        [-14.3, 2.6],
+        [-51.6, 36.0]
+      ],
+      "provenance": {
+        "confidence": "inferred",
+        "source": "Deck outline: Google Earth Pro hand-mapping (owner), 2026-08",
+        "era": "timeless",
+        "note": "Level/deck height inferred: Silverstein↔Clifton ≈ L3 (KML LookAt altitude 12.0 m corroborates); Clifton↔Perelman ≈ L2"
+      }
+    }
+  ],
+  "notes": [
+    "34th Street runs through the gap between the HUP Main blob (west) and the Clifton/PCAM block (east).",
+    "Wing footprints are owner hand-traces; adjacent wings share party walls, so traces may abut or slightly overlap.",
+    "An unnamed 10-level OSM tower (way/749302008) sits in PCAM's NE notch — not rendered; likely a PCAM annex/connector."
+  ]
+}

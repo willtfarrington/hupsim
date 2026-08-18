@@ -1,0 +1,33 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/hupsim-core",
+    "crates/hupsim-sim",
+    "crates/hupsim-data",
+    "crates/hupsim-app",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+authors = ["W. Taylor Farrington"]
+
+[workspace.dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+rand = "0.9"
+rand_chacha = "0.9"
+rayon = "1"
+
+hupsim-core = { path = "crates/hupsim-core" }
+hupsim-sim = { path = "crates/hupsim-sim" }
+hupsim-data = { path = "crates/hupsim-data" }
+
+# Bevy rebuilds are the pain point; keep dependencies optimized even in dev.
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3

@@ -1,0 +1,281 @@
+{
+  "$schema_note": "ARCHIVE — records removed from the live hupsim data files when the project scope was reduced to the HUP West Philadelphia campus only (2026-08; see roadmap/README.md decision record: archive, don't delete). The compiler never reads this file. Entries are verbatim copies, provenance intact, from hup_topology.json (topology_nodes, topology_edges), units.json (units), and layout.json (layout_buildings, layout_insets). CAUTION: the bldg.hup_cedar layout footprint vertices are IN THE TRANSLATED INSET FRAME — the real OSM footprint was translated ~2.8 km NE from the true site (39.9515,-75.2296) for display as an inset. They are NOT real coordinates.",
+  "archived": "2026-08-11",
+  "reason": "Scope reduced to the HUP West Philadelphia campus: HUP Cedar (detached site, deliberately falsified inset footprint), Penn Medicine Radnor, the Interventional Support Center, and four unmapped/vestigial HUP Main wings (Gibson, Donner, Devon, Centrex) are out of scope.",
+
+  "topology_nodes": [
+    {
+      "id": "wing.gibson",
+      "type": "wing",
+      "parent": "bldg.hup_main",
+      "name": "Gibson Wing",
+      "built": 1883,
+      "has_inpatient_beds": false,
+      "note": "Oldest surviving structure on the site; only the rear of the original wing remains. Spruce St front was replaced by Gates.",
+      "confidence": "inferred"
+    },
+    {
+      "id": "wing.donner",
+      "type": "wing",
+      "parent": "bldg.hup_main",
+      "name": "Donner Building",
+      "built": 1958,
+      "has_inpatient_beds": false,
+      "confidence": "inferred"
+    },
+    {
+      "id": "wing.devon",
+      "type": "wing",
+      "parent": "bldg.hup_main",
+      "name": "Devon MRI Center",
+      "built": 1986,
+      "has_inpatient_beds": false,
+      "function": "imaging",
+      "confidence": "reported"
+    },
+    {
+      "id": "wing.centrex",
+      "type": "wing",
+      "parent": "bldg.hup_main",
+      "name": "Centrex Building",
+      "built": 1969,
+      "has_inpatient_beds": false,
+      "note": "Replaced the original Dispensary. Not listed among wings on the current Facilities record - may have been absorbed or renamed.",
+      "confidence": "unverified"
+    },
+    {
+      "id": "bldg.hup_cedar",
+      "type": "building",
+      "parent": "campus.cedar_avenue",
+      "name": "HUP Cedar Avenue",
+      "aliases": ["HUP Cedar", "former Mercy Philadelphia Hospital"],
+      "transitioned": "2021-03",
+      "has_inpatient_beds": true,
+      "note": "Physically detached from West Philadelphia campus; part of the PHMC Public Health Campus on Cedar. Operates under the HUP license.",
+      "confidence": "verified"
+    },
+    {
+      "id": "campus.cedar_avenue",
+      "type": "campus",
+      "name": "PHMC Public Health Campus on Cedar",
+      "confidence": "verified"
+    },
+    {
+      "id": "bldg.radnor",
+      "type": "building",
+      "parent": "campus.radnor",
+      "name": "Penn Medicine Radnor",
+      "has_inpatient_beds": false,
+      "note": "Ambulatory / procedural only; carried under the 'One HUP' umbrella.",
+      "confidence": "reported"
+    },
+    {
+      "id": "campus.radnor",
+      "type": "campus",
+      "name": "Radnor, PA",
+      "confidence": "verified"
+    },
+    {
+      "id": "bldg.isc",
+      "type": "building",
+      "parent": "campus.offsite",
+      "name": "Interventional Support Center",
+      "has_inpatient_beds": false,
+      "function": "Centralized sterile processing for Penn Medicine Philadelphia hospitals",
+      "confidence": "reported"
+    },
+    {
+      "id": "campus.offsite",
+      "type": "campus",
+      "name": "Off-campus support sites",
+      "confidence": "inferred"
+    },
+    {
+      "id": "unit.cedar.psych", "type": "unit", "parent": "bldg.hup_cedar", "name": "Inpatient Psychiatry", "location": "2nd Floor NE Wing and SE Wing", "beds": 31, "confidence": "verified"
+    },
+    {
+      "id": "unit.cedar.detox", "type": "unit", "parent": "bldg.hup_cedar", "name": "Inpatient Detoxification", "location": "2nd Floor Center Wing", "beds": 16, "confidence": "verified"
+    },
+    {
+      "id": "unit.cedar.crc", "type": "unit", "parent": "bldg.hup_cedar", "name": "Crisis Response Center", "bed_type": "observation / crisis", "confidence": "reported"
+    }
+  ],
+
+  "topology_edges": [
+    {"from": "bldg.hup_main", "to": "bldg.penn_tower", "type": "bridge", "status": "DEPRECATED", "note": "Penn Tower was demolished to make way for the Pavilion, but the Penn Facilities building record still describes a bridge connection from it. Do not trust this edge; it is a stale entry in an official source. (Already dangling before archival — no bldg.penn_tower node exists, so the compiler's dangling-edge filter dropped it; archiving changes no behavior.)", "confidence": "unverified"},
+    {"from": "wing.gates", "to": "wing.gibson", "type": "structural_adjacency", "note": "Gates replaced the Spruce St front of Gibson - they are literally welded together along that seam.", "confidence": "verified"},
+    {"from": "wing.founders", "to": "wing.gibson", "type": "structural_adjacency", "note": "Founders replaced the rear of the original Central Hospital adjoining Gibson.", "confidence": "inferred"},
+    {"from": "campus.west_philadelphia", "to": "campus.cedar_avenue", "type": "no_physical_connection", "note": "Separate site in West/Southwest Philadelphia; transfers require ambulance.", "confidence": "verified"},
+    {"from": "campus.west_philadelphia", "to": "campus.radnor", "type": "no_physical_connection", "confidence": "verified"}
+  ],
+
+  "units": [
+    {
+      "id": "unit.cedar.psych",
+      "name": "Cedar — Inpatient Psychiatry (2 NE/SE)",
+      "service": "Psychiatry (secure adult inpatient)",
+      "unit_type": "psych",
+      "building": "bldg.hup_cedar",
+      "level": 2,
+      "elevator_core": null,
+      "rooms": {
+        "source": "count",
+        "count": 31,
+        "number_prefix": "C2-",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "pennmedicine.org / Penn Today 2023 — '31-bed secure inpatient unit… 2nd Floor NE Wing and SE Wing'"
+    },
+    {
+      "id": "unit.cedar.detox",
+      "name": "Cedar — Inpatient Detox (2 Center)",
+      "service": "Addiction Medicine — substance-use treatment",
+      "unit_type": "detox",
+      "building": "bldg.hup_cedar",
+      "level": 2,
+      "elevator_core": null,
+      "rooms": {
+        "source": "count",
+        "count": 16,
+        "number_prefix": "C2C-",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "pennmedicine.org / Penn Today — '16 beds for substance use treatment', 2nd Floor Center Wing"
+    },
+    {
+      "id": "unit.cedar.crc",
+      "name": "Cedar — Crisis Response Center",
+      "service": "Psychiatric Emergency (24/7 walk-in crisis)",
+      "unit_type": "obs",
+      "building": "bldg.hup_cedar",
+      "level": 1,
+      "elevator_core": null,
+      "rooms": {
+        "source": "count",
+        "count": 12,
+        "number_prefix": "CRC-",
+        "kind": "obs"
+      },
+      "confidence": "inferred",
+      "era": "post_pavilion",
+      "source": "CRC opened 2023 (pennmedicine.org, Inquirer) — verified existence; treatment-space count UNVERIFIED placeholder"
+    },
+    {
+      "id": "unit.cedar.5nw",
+      "name": "Cedar 5NW — Medicine",
+      "service": "Adult Inpatient Medicine",
+      "unit_type": "med_surg",
+      "building": "bldg.hup_cedar",
+      "level": 5,
+      "elevator_core": null,
+      "rooms": {
+        "source": "count",
+        "count": 15,
+        "number_prefix": "5NW-",
+        "kind": "inpatient"
+      },
+      "confidence": "reported",
+      "era": "post_pavilion",
+      "source": "careers.pennmedicine.org 'CNA — HUP Cedar 5NW and 6NW Inpatient Medical Units' (bed count not published — 15 assumed to mirror 6NW)"
+    },
+    {
+      "id": "unit.cedar.6nw",
+      "name": "Cedar 6NW — Medicine (telemetry)",
+      "service": "Adult Medicine w/ telemetry (COPD, CHF, sepsis, renal failure…)",
+      "unit_type": "med_surg",
+      "building": "bldg.hup_cedar",
+      "level": 6,
+      "elevator_core": null,
+      "rooms": {
+        "source": "count",
+        "count": 15,
+        "number_prefix": "6NW-",
+        "kind": "inpatient"
+      },
+      "confidence": "verified",
+      "era": "post_pavilion",
+      "source": "careers.pennmedicine.org '6 North West (6NW) at HUP Cedar is a 15-bed Medicine Unit with telemetry, all-private rooms'"
+    },
+    {
+      "id": "unit.cedar.ed",
+      "name": "Cedar — Emergency Department",
+      "service": "Emergency Medicine",
+      "unit_type": "ed",
+      "building": "bldg.hup_cedar",
+      "level": 1,
+      "elevator_core": null,
+      "rooms": {
+        "source": "count",
+        "count": 15,
+        "number_prefix": "CED-",
+        "kind": "ed_bay"
+      },
+      "confidence": "inferred",
+      "era": "post_pavilion",
+      "source": "careers.pennmedicine.org 'Clinical Nurse 2 — Emergency Department HUP Cedar' — verified existence; bay count UNVERIFIED placeholder"
+    }
+  ],
+
+  "layout_buildings": [
+    {
+      "node": "wing.gibson",
+      "footprint": { "vertices": [[-182, 108], [-162, 108], [-162, 128], [-182, 128]] },
+      "levels": 4,
+      "floor_height_m": 4.2,
+      "provenance": { "confidence": "unverified", "source": "20 m position marker: directly south of Gates (Gates replaced Gibson's Spruce front; structurally welded). No OSM evidence.", "era": "timeless" }
+    },
+    {
+      "node": "wing.donner",
+      "footprint": { "vertices": [[-225, 65], [-205, 65], [-205, 85], [-225, 85]] },
+      "levels": 7,
+      "floor_height_m": 3.6,
+      "provenance": { "confidence": "unverified", "source": "20 m position marker in the courtyard-riddled mid-west zone of the blob. No OSM evidence.", "era": "timeless" }
+    },
+    {
+      "node": "wing.devon",
+      "footprint": { "vertices": [[-320, 45], [-300, 45], [-300, 65], [-320, 65]] },
+      "levels": 2,
+      "floor_height_m": 4.0,
+      "provenance": { "confidence": "unverified", "source": "20 m symbolic marker west of the blob; Devon MRI Center does not appear in OSM in any form.", "era": "timeless" }
+    },
+    {
+      "node": "bldg.hup_cedar",
+      "footprint": { "vertices": [[-450.4, -270.2], [-417.1, -161.2], [-390.1, -226.4], [-330.1, -207.2], [-308.7, -251.4], [-345.0, -310.6], [-363.0, -258.9], [-409.6, -262.1], [-408.6, -299.1]] },
+      "levels": 8,
+      "floor_height_m": 3.8,
+      "provenance": { "confidence": "reported", "source": "OSM relation/11905029 (sole large building inside amenity=hospital 'Mercy Philadelphia Hospital' way/350187749), translated ~2.8 km NE for the inset; level count assumed (~8-story historic tower, no OSM tag)", "era": "timeless" },
+      "archive_note": "VERTICES ARE IN THE TRANSLATED INSET FRAME, not real coordinates — see $schema_note."
+    }
+  ],
+
+  "layout_insets": [
+    {
+      "nodes": ["bldg.hup_cedar"],
+      "label": "HUP Cedar Avenue — real site 501 S 54th St, ≈2.8 km SW · NO physical connection (ambulance transfer)",
+      "center": [-380, -235]
+    }
+  ],
+
+  "relocated_prose": {
+    "hup_topology.derived_views_removed_ids": {
+      "buildings_with_patient_rooms": ["bldg.hup_cedar"],
+      "buildings_without_patient_rooms": ["wing.gibson", "wing.donner", "wing.devon", "wing.centrex", "bldg.radnor", "bldg.isc"],
+      "boarding_capable_non_inpatient": ["unit.cedar.crc"]
+    },
+    "hup_topology.known_limitations": [
+      "No public floor-by-floor directory exists for Gibson, Donner, Devon, or Centrex; their contents were inferred from scattered practice-location pages. (The same limitation applies to the retained Maloney and White wings; that half of the sentence stays in the live file.)"
+    ],
+    "hup_topology.open_questions": [
+      "Does the Centrex Building still exist under that name? It appears in the archival building list but not in the current Facilities wing enumeration.",
+      "Whether Gibson or Donner retain any licensed beds - no source affirms beds, but no source explicitly denies them either. The absence-of-evidence here is from a wayfinding document, which lists only rooms a visitor might be sent to. (The same question for the retained Maloney and White wings stays in the live file.)"
+    ],
+    "layout.schema_note_excerpt": "Cedar Avenue's real OSM footprint is translated ~2.8 km NE into an inset (true site: 39.9515,-75.2296, no physical connection).",
+    "layout.notes": [
+      "Centrex could not be placed (absent from OSM and current facility lists) and carries no geometry."
+    ]
+  }
+}
